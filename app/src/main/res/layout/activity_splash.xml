@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    tools:context=".SplashActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:orientation="vertical"
         tools:ignore="UselessParent">
 
         <ImageView
@@ -20,7 +20,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="@string/logo" />
+            android:contentDescription="@string/logo"
+            android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 </RelativeLayout>
