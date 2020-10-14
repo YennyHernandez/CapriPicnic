@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name" translatable="false">CapriPicnic</string>
     <string name="logo">logo</string>
+    <string name="Correo">Correo</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="new_user_sign_up">¿Nuevo usuario? REGISTRARSE</string>
+    <string name="Nombre">Nombre</string>
+    <string name="enter_password_again">Ingrese la contraseña de nuevo</string>
+    <string name="do_you_accept_the_terms">Acepta los terminos?</string>
+    <string name="register">Registrarse</string>
+    <string name="have_a_count_sign_in">¿Tiene una cuenta? INICIAR SESIÓN</string>
+    <string name="password_recovery">Recuperar contraseña</string>
+    <string name="submit">Enviar</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="user_edit">Editar usuario</string>
 </resources>
