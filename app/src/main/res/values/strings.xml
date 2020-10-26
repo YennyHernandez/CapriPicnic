@@ -16,4 +16,20 @@
     <string name="welcome">Bienvenido</string>
     <string name="logout">Cerrar sesión</string>
     <string name="user_edit">Editar usuario</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="products">"SESION DE LISTADO DE LOS 4 PRODUCTOS (leche, yogur, arequipe, queso) "</string>
+    <string name="reservations">"SESION DE LISTADO DE LOS 4 TEMAS DE PICNIC (lovers,rest,celebration) "</string>
+    <string name="arequipe_description">" Descripción de producto arequipe"</string>
+    <string name="yogur_description">" Descripción de producto yogurt"</string>
+    <string name="cheese_description">"  Descripción de producto cheese"</string>
+    <string name="milk_description">" Descripción de producto milk"</string>
+    <string name="lovers_description">" Descripción de producto picnic lovers"</string>
+    <string name="rest_description">" Descripción de producto picnic rest"</string>
+    <string name="celebration_description">" Descripción de producto picnic celebration"</string>
+    <string name="quote">"Cotización del pedido, con botones para elegir si comprar o guardar en cotizaciones"</string>
+    <string name="payment">"Aviso de pago con terminos y condiciones y boton de confirmar compra"</string>
+    <string name="my_quote">"lista de todas las cotizaciones realizadas y guardadas con opciones de eliminar, editar o comprar"</string>
+    <string name="my_purchase">"lista de todas las compras hechas con boton de solicitar cambio"</string>
+
 </resources>

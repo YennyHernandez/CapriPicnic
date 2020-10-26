@@ -2,6 +2,7 @@ package com.yennyh.capripicnic.main.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val inputDataUser = intent.extras
 
-        name = inputDataUser?.getString("name").toString()
+        name = inputDataUser?.getString("name").toString()  //se obtiene la información
         email = inputDataUser?.getString("email").toString()
         password = inputDataUser?.getString("password").toString()
 
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.logoutItem -> {
+            R.id.logoutItem -> {  //item del menu
                 sendLoguinData()
                 finish()
                 true
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun sendLoguinData() {
+    private fun sendLoguinData() {   //pasa la información y cambia de actividad
         val login = Intent(this, LoginActivity::class.java)
         login.putExtra("name:", name)
         login.putExtra("email", email)
@@ -55,6 +56,32 @@ class MainActivity : AppCompatActivity() {
         startActivity(login)
         finish()
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d( "Metodo","onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d( "Metodo","onStop")
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        onDestroy()
+        finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d( "Metodo","onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d( "Metodo","onRestart")
+    }
+
 
 }
 
