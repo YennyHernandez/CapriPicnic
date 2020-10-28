@@ -1,10 +1,11 @@
-package com.yennyh.capripicnic
+package com.yennyh.capripicnic.main.ui.fragmentos
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.yennyh.capripicnic.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -13,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [cheese.newInstance] factory method to
+ * Use the [arequipe.newInstance] factory method to
  * create an instance of this fragment.
  */
-class cheese : Fragment() {
+class arequipe : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +35,7 @@ class cheese : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cheese, container, false)
+        return inflater.inflate(R.layout.fragment_arequipe, container, false)
     }
 
     companion object {
@@ -44,12 +45,12 @@ class cheese : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment cheese.
+         * @return A new instance of fragment arequipe.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            cheese().apply {
+            arequipe().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

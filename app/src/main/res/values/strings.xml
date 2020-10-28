@@ -31,5 +31,20 @@
     <string name="payment">"Aviso de pago con terminos y condiciones y boton de confirmar compra"</string>
     <string name="my_quote">"lista de todas las cotizaciones realizadas y guardadas con opciones de eliminar, editar o comprar"</string>
     <string name="my_purchase">"lista de todas las compras hechas con boton de solicitar cambio"</string>
+    <string name="title_activity_navegation_drawer">NavegationDrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="item_my_quote_name">Mis cotizaciones</string>
+    <string name="item_my_account_name">Mi cuenta</string>
+    <string name="item_my_purchase_name">Mis compras</string>
+    <string name="account_description"> Información general de la cuenta con botones para editar</string>
 
 </resources>

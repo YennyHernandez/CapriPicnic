@@ -32,13 +32,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.overflow_menu, menu)
+        menuInflater.inflate(R.menu.menu_drawer, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.logoutItem -> {  //item del menu
+            R.id.nav_my_purchase-> {  //item del menu
                 sendLoguinData()
                 finish()
                 true

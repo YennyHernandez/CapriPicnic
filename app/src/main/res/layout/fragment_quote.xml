@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reservas">
+    tools:context=".main.ui.fragmentos.reservas">
 
     <TextView
         android:id="@+id/quote_textView"
