@@ -46,5 +46,6 @@
     <string name="item_my_account_name">Mi cuenta</string>
     <string name="item_my_purchase_name">Mis compras</string>
     <string name="account_description"> Información general de la cuenta con botones para editar</string>
+    <string name="nav_title_capripicnic">Capripicnic</string>
 
 </resources>
