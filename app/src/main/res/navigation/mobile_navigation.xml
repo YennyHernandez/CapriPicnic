@@ -11,11 +11,11 @@
     <fragment
         android:id="@+id/nav_myQuotes"
         android:name="com.yennyh.capripicnic.ui.fragments.quote"
-        android:label="@string/my_quotes" />
+        android:label="@string/my_quote" />
     <fragment
         android:id="@+id/nav_myPurchase"
         android:name="com.yennyh.capripicnic.ui.fragments.my_purchase"
-        android:label="@string/my_purchases" />
+        android:label="@string/my_purchase" />
     <fragment
         android:id="@+id/nav_myReservations"
         android:name="com.yennyh.capripicnic.ui.fragments.reservas"

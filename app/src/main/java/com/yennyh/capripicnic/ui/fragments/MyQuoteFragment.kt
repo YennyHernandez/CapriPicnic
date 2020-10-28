@@ -17,6 +17,8 @@ private const val ARG_PARAM2 = "param2"
  * Use the [my_coute.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+//TODO: Hacer refactor de quote
 class my_coute : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -35,7 +37,7 @@ class my_coute : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_coute, container, false)
+        return inflater.inflate(R.layout.fragment_my_quote, container, false)
     }
 
     companion object {

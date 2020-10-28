@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/overflowMenu_myPurchase"
-        android:title="@string/item_my_purchase_name" />
+        android:title="@string/my_purchase" />
     <item
-        android:id="@+id/overflowMenu_myQoute"
-        android:title="@string/item_my_quote_name"
+        android:id="@+id/overflowMenu_myQuote"
+        android:title="@string/my_quote"
         app:showAsAction="collapseActionView" />
     <item
         android:id="@+id/overflowMenu_myAccount"
-        android:title="@string/item_my_account_name" />
+        android:title="@string/my_account" />
 
     <item
         android:id="@+id/overflowMenu_logout"

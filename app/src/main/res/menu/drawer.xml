@@ -5,19 +5,19 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_products"
+        android:id="@+id/nav_myaccount"
         android:orderInCategory="100"
-        android:title="@string/products_fragment_title"
+        android:title="@string/my_account"
         app:showAsAction="never" />
     <item
         android:id="@+id/nav_myQuotes"
         android:orderInCategory="100"
-        android:title="@string/my_quotes"
+        android:title="@string/my_quote"
         app:showAsAction="never" />
     <item
         android:id="@+id/nav_myPurchase"
         android:orderInCategory="100"
-        android:title="@string/my_purchases"
+        android:title="@string/my_purchase"
         app:showAsAction="never" />
     <item
         android:id="@+id/nav_myReservations"
