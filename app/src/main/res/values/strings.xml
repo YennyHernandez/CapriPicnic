@@ -42,6 +42,9 @@
     <string name="title_activity_buttom_navegation_">MainActivity</string>
     <string name="home">Home</string>
     <string name="reservatios">Reservaciones</string>
+    <string name="my_reservations_description"> Lista de las reservaciones pagadas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

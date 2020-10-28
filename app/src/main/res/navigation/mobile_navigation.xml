@@ -2,15 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_products">
+    app:startDestination="@id/nav_myaccount">
 
     <fragment
-        android:id="@+id/nav_products"
-        android:name="com.yennyh.capripicnic.ui.fragments.products"
-        android:label="@string/products" />
+        android:id="@+id/nav_myaccount"
+        android:name="com.yennyh.capripicnic.ui.fragments.my_accountFragment"
+        android:label="@string/my_account" />
     <fragment
         android:id="@+id/nav_myQuotes"
-        android:name="com.yennyh.capripicnic.ui.fragments.quote"
+        android:name="com.yennyh.capripicnic.ui.fragments.my_coute"
         android:label="@string/my_quote" />
     <fragment
         android:id="@+id/nav_myPurchase"
@@ -18,6 +18,6 @@
         android:label="@string/my_purchase" />
     <fragment
         android:id="@+id/nav_myReservations"
-        android:name="com.yennyh.capripicnic.ui.fragments.reservas"
-        android:label="@string/products" />
+        android:name="com.yennyh.capripicnic.ui.fragments.MyReservationsFragment"
+        android:label="@string/my_reservations" />
 </navigation>
