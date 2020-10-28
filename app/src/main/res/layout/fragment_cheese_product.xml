@@ -7,13 +7,13 @@
     tools:context=".ui.fragments.products">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/cheese_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/products_fragment_title"
+        android:text="@string/cheese_description"
         android:textAlignment="center"
         android:textColor="#F44336"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.ui.fragmentos.reservas">
+    tools:context=".ui.fragments.reservas">
 
     <TextView
         android:id="@+id/my_quote_textView"
@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/my_quote"
+        android:text="@string/my_quotes"
         android:textAlignment="center"
         android:textColor="#F44336"
         app:layout_constraintEnd_toEndOf="parent"

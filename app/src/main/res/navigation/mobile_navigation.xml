@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_my_purchase">
+    app:startDestination="@id/nav_products">
 
-
     <fragment
-        android:id="@+id/nav_my_coute"
-        android:name="com.yennyh.capripicnic.main.ui.fragmentos.my_coute"
-        android:label="Mis cotizaciones" />
+        android:id="@+id/nav_products"
+        android:name="com.yennyh.capripicnic.ui.fragments.products"
+        android:label="@string/products" />
     <fragment
-        android:id="@+id/nav_my_purchase"
-        android:name="com.yennyh.capripicnic.main.ui.fragmentos.my_purchase"
-        android:label="Mis compras" />
+        android:id="@+id/nav_myQuotes"
+        android:name="com.yennyh.capripicnic.ui.fragments.quote"
+        android:label="@string/my_quotes" />
     <fragment
-        android:id="@+id/nav_my_account"
-        android:name="com.yennyh.capripicnic.main.ui.fragmentos.my_accountFragment"
-        android:label="Mi cuenta"
-        tools:layout="@layout/fragment_my_coute" />
+        android:id="@+id/nav_myPurchase"
+        android:name="com.yennyh.capripicnic.ui.fragments.my_purchase"
+        android:label="@string/my_purchases" />
+    <fragment
+        android:id="@+id/nav_myReservations"
+        android:name="com.yennyh.capripicnic.ui.fragments.reservas"
+        android:label="@string/products" />
 </navigation>

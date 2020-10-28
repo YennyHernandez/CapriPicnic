@@ -15,32 +15,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+
         <activity
-            android:name=".main.ui.drawer.NavegationDrawerActivity"
+            android:name="com.yennyh.capripicnic.ui.activities.drawer.NavigationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".auth.ui.passwordrecovery.PasswordRecoveryActivity" />
+        <activity android:name="com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity" />
         <activity
             android:name=".main.ui.MainActivity"
             android:theme="@style/HomeTheme" />
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".auth.ui.register.RegisterActivity" />
-        <activity android:name=".auth.ui.login.LoginActivity" />
+
+        <activity android:name="com.yennyh.capripicnic.ui.activities.register.RegisterActivity" />
+        <activity android:name="com.yennyh.capripicnic.ui.activities.login.LoginActivity" />
     </application>
 
 </manifest>
