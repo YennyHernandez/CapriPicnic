@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.auth.ui.register
+package com.yennyh.capripicnic.ui.activities.register
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.auth.ui.login.LoginActivity
+import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 

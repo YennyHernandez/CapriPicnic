@@ -1,8 +1,9 @@
-package com.yennyh.capripicnic.auth.ui.login
+package com.yennyh.capripicnic.ui.activities.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View.OnFocusChangeListener
@@ -10,9 +11,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.auth.ui.passwordrecovery.PasswordRecoveryActivity
-import com.yennyh.capripicnic.auth.ui.register.RegisterActivity
-import com.yennyh.capripicnic.main.ui.MainActivity
+import com.yennyh.capripicnic.ui.activities.drawer.NavigationDrawerActivity
+import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
+import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
@@ -29,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
     private var correctName: String = ""
     private var correctEmail: String = ""
     private var correctPassword: String = ""
+    private val emailAdmin = "jaidiver.gomez@udea.edu.co"
+    private val passwordAdmin = "Fifi6481&"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
         correctEmail = inputDataUser?.getString("email").toString()
         correctPassword = inputDataUser?.getString("password").toString()
 
-        email_editText.setText(if(correctEmail!="null") correctEmail else "")
-        password_editText.setText(if(correctPassword!="null") correctPassword else "")
+        email_editText.setText(if (correctEmail != "null") correctEmail else "")
+        password_editText.setText(if (correctPassword != "null") correctPassword else "")
         //Setup
         setup()
     }
@@ -167,7 +170,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         if (correctEmail != "null" && correctPassword != "null") {
-            if (correctEmail == correctEmail && correctPassword == password) {
+            if (correctEmail == email && correctPassword == password) {
                 sendHomeData()
             } else {
                 MaterialAlertDialogBuilder(this)
@@ -177,18 +180,22 @@ class LoginActivity : AppCompatActivity() {
             }
 
         } else {
-            MaterialAlertDialogBuilder(this)
-                .setMessage("No se ha registrado nungún usuario, por favor cree una cuenta")
-                .setNegativeButton("OK", null)
-                .show()
+            if (email == emailAdmin && password == passwordAdmin) {
+                sendHomeData()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setMessage("No se ha registrado nungún usuario, por favor cree una cuenta")
+                    .setNegativeButton("OK", null)
+                    .show()
+            }
         }
     }
 
     private fun sendHomeData() {
-        val home = Intent(this, MainActivity::class.java)
+        val home = Intent(this, NavigationDrawerActivity::class.java)
         home.putExtra("name:", correctName)
-        home.putExtra("email", correctEmail)
-        home.putExtra("password", correctPassword)
+        home.putExtra("email", email)
+        home.putExtra("password", password)
         startActivity(home)
         finish()
     }
@@ -204,7 +211,11 @@ class LoginActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
 
-        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({
+            run {
+                doubleBackToExitPressedOnce = false
+            }
+        }, 2000)
     }
 
 }

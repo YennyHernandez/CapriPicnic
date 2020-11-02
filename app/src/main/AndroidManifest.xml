@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yennyh.capripicnic">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -9,20 +15,36 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".auth.ui.passwordrecovery.PasswordRecoveryActivity" />
         <activity
-            android:name=".main.ui.MainActivity"
-            android:theme="@style/HomeTheme" />
+            android:name=".ui.activities.buttom.Buttom_navegation_Activity"
+            android:label="@string/title_activity_buttom_navegation_">
+
+        </activity>
+        <activity
+            android:name=".ui.activities.drawer.NavigationDrawerActivity"
+            android:label="@string/title_activity_navegation_drawer"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".ui.activities.passwordrecovery.PasswordRecoveryActivity" />
+        <!--        /<activity-->
+        <!--            android:name=".main.ui.MainActivity"-->
+        <!--            android:theme="@style/HomeTheme"/>-->
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".auth.ui.register.RegisterActivity" />
-        <activity android:name=".auth.ui.login.LoginActivity" />
+        <activity android:name=".ui.activities.register.RegisterActivity" />
+        <activity android:name=".ui.activities.login.LoginActivity" />
     </application>
 
 </manifest>
