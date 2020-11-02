@@ -17,10 +17,10 @@
 
         <ImageView
             android:id="@+id/logo_imageView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_gravity="center_horizontal"
             android:contentDescription="@string/logo"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_logocapripicnic" />
     </LinearLayout>
 </RelativeLayout>
