@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.yennyh.capripicnic.ui.activities.login.LoginActivity
+import com.yennyh.capripicnic.auth.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {

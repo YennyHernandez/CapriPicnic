@@ -16,35 +16,4 @@
     <string name="welcome">Bienvenido</string>
     <string name="logout">Cerrar sesión</string>
     <string name="user_edit">Editar usuario</string>
-    <string name="products_fragment_description">"SESION DE LISTADO DE LOS 4 PRODUCTOS (leche, yogur, arequipe, queso) "</string>
-    <string name="home_fragment_description">"SESION DE LISTADO y DESCRIPCION DE ACTIVIDADES  (picnic, senderismo, gastronomia, granja) "</string>
-    <string name="reservations__description">"SESION DE LISTADO DE LOS 4 TEMAS DE PICNIC (lovers,rest,celebration) "</string>
-    <string name="arequipe_description">" Descripción de producto arequipe"</string>
-    <string name="yogur_description">" Descripción de producto yogurt"</string>
-    <string name="cheese_description">"  Descripción de producto cheese"</string>
-    <string name="milk_description">" Descripción de producto milk"</string>
-    <string name="lovers_description">" Descripción de producto picnic lovers"</string>
-    <string name="rest_description">" Descripción de producto picnic rest"</string>
-    <string name="celebration_description">" Descripción de producto picnic celebration"</string>
-    <string name="quote_description">"Cotización del pedido, con botones para elegir si comprar o guardar en cotizaciones"</string>
-    <string name="payment_description">"Aviso de pago con terminos y condiciones y boton de confirmar compra"</string>
-    <string name="my_quotes_description">"lista de todas las cotizaciones realizadas y guardadas con opciones de eliminar, editar o comprar"</string>
-    <string name="my_purchases_description">"lista de todas las compras hechas con boton de solicitar cambio"</string>
-    <string name="title_activity_navegation_drawer">NavegationDrawerActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="my_quote">Mis cotizaciones</string>
-    <string name="my_account">Mi cuenta</string>
-    <string name="my_purchase">Mis compras</string>
-    <string name="account_description"> Información general de la cuenta con botones para editar</string>
-    <string name="nav_title_capripicnic">CapriPicnic</string>
-    <string name="my_reservations">Mis reservaciones</string>
-    <string name="products">Productos</string>
-    <string name="title_activity_buttom_navegation_">MainActivity</string>
-    <string name="home">Home</string>
-    <string name="reservatios">Reservaciones</string>
-    <string name="my_reservations_description"> Lista de las reservaciones pagadas</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
 </resources>

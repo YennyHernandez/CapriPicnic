@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.activities.passwordrecovery
+package com.yennyh.capripicnic.auth.ui.passwordrecovery
 
 
 import android.os.Bundle
