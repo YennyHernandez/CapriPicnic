@@ -30,9 +30,6 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".ui.activities.passwordrecovery.PasswordRecoveryActivity" />
-        <!--        /<activity-->
-        <!--            android:name=".main.ui.MainActivity"-->
-        <!--            android:theme="@style/HomeTheme"/>-->
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
