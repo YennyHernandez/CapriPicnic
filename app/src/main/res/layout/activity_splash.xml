@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/logo_imageView"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_logo_white"
             tools:ignore="ContentDescription" />
