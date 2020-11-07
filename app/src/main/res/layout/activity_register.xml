@@ -18,10 +18,10 @@
 
         <!-- Icono -->
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_baseline_account_circle_24"
+            android:src="@drawable/ic_logo_transparent_white"
             tools:ignore="ContentDescription" />
 
         <!-- Name -->
