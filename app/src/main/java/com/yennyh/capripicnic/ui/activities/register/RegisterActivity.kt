@@ -5,19 +5,25 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.server.Usuario
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 
 
 class RegisterActivity : AppCompatActivity() {
-
+    private lateinit var auth: FirebaseAuth
     private var name: String = ""
+    private var phone: String = ""
     private var email: String = ""
     private var password: String = ""
     private var passwordVerified: String = ""
@@ -30,14 +36,18 @@ class RegisterActivity : AppCompatActivity() {
     private var passwordOnFirstLeaveFocus: Boolean = false
     private var passwordVerifiedOnFirstLeaveFocus: Boolean = false
     private var isAcceptTerms: Boolean = false
+    companion object {
+
+        private val TAG = RegisterActivity::class.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-
         //Setup
         setup()
+        auth = FirebaseAuth.getInstance()
     }
 
     private fun setup() {
@@ -63,6 +73,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         register_button.setOnClickListener {
+            phone = phone_Register_editText.text.toString()
             name = nameRegister_editText.text.toString()
             isValidName = onValidName(name)
             email = emailRegister_editText.text.toString()
@@ -83,6 +94,7 @@ class RegisterActivity : AppCompatActivity() {
             } else true
 
             if (isValidName && isValidEmail && isValidPassword && isValidPasswordVerified && isAcceptTerms) {
+                registroEnFirebase(email, password, name, phone)
                 register()
             }
         }
@@ -101,10 +113,45 @@ class RegisterActivity : AppCompatActivity() {
                     .setNegativeButton("Cancelar", null)
                     .setPositiveButton("Aceptar") { _, _ ->
                         sendLoguinData()
+
                     }
                     .show()
             }
         }
+    }
+
+    private fun registroEnFirebase(email: String, password: String, name: String, phone: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->   //si se realizo lo anterior continua
+                if (task.isSuccessful) {
+                    val uid =
+                        auth.currentUser?.uid  //copia el id asociado a ese registro que crea firebase automaticamente
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success")
+                    CrearUsuarioEnBaseDeDatos(uid, email,name,phone)
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+    }
+
+    private fun CrearUsuarioEnBaseDeDatos(uid: String?, email: String, name: String, phone: String) {
+        val database = FirebaseDatabase.getInstance()
+        val myUsersReference =
+            database.getReference("usuarios")   //me paro en la tabla que deseo y si no existe la crea
+        //val id = myUsersReference.push().key //agrega id aleatoriamente pero como queriamos el mismo del que se resistro uso eol uid
+        val usuario = Usuario(uid, name, email, this.phone)  //instancia el objeto (clase usuario)
+        uid?.let {
+            myUsersReference.child(uid).setValue(usuario)
+        }  // mejor practica para no quitar la propiedade de null
+        onBackPressed()
     }
 
     private val textWatcher = object : TextWatcher {
@@ -115,7 +162,6 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            //TODO: Obtener el textView que llamó al envento, crear bandera para que simular onDirty despues de activar un onfocusLeave
             nameRegister_editText.onFocusChangeListener =
                 View.OnFocusChangeListener { _, hasFocus ->
                     if (hasFocus) {
@@ -288,9 +334,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun sendLoguinData() {
         val login = Intent(this, LoginActivity::class.java)
-        login.putExtra("name:", name)
+        /*login.putExtra("name:", name)
         login.putExtra("email", email)
-        login.putExtra("password", password)
+        login.putExtra("password", password)*/
         startActivity(login)
         finish()
     }

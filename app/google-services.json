@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "750288858142",
+    "firebase_url": "https://capripicnicapp.firebaseio.com",
+    "project_id": "capripicnicapp",
+    "storage_bucket": "capripicnicapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750288858142:android:b6b861edb78f3a415f520f",
+        "android_client_info": {
+          "package_name": "com.yennyh.capripicnic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750288858142-3okse2maupa0cd45538s17303ev2o3t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvYwMhl2h_v1eWjRguNhMkoRen4KGDTPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750288858142-3okse2maupa0cd45538s17303ev2o3t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

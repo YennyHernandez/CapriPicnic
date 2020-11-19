@@ -64,6 +64,30 @@
                 android:drawablePadding="10dp"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
+        <!-- telefono -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_Register_textFieldLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:hint="@string/phone"
+            android:textColorHint="@android:color/darker_gray"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_Register_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                android:drawablePadding="10dp"
+                android:inputType="number"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
