@@ -6,10 +6,12 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View.OnFocusChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.ui.activities.drawer.NavigationDrawerActivity
 import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
@@ -32,6 +34,10 @@ class LoginActivity : AppCompatActivity() {
     private var correctPassword: String = ""
     private val emailAdmin = "jaidiver.gomez@udea.edu.co"
     private val passwordAdmin = "Fifi6481&"
+    private lateinit var auth: FirebaseAuth
+    companion object {
+        private val TAG = RegisterActivity::class.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
         password_editText.setText(if (correctPassword != "null") correctPassword else "")
         //Setup
         setup()
+        auth = FirebaseAuth.getInstance()
     }
 
     private fun setup() {
@@ -65,7 +72,9 @@ class LoginActivity : AppCompatActivity() {
             isValidPassword = onValidPassword(password)
 
             if (isValidEmail && isValidPassword) {
+                loginWithFirebase(email, password)
                 login()
+
             }
         }
 
@@ -85,6 +94,25 @@ class LoginActivity : AppCompatActivity() {
                     .show()
             }
         }
+
+    }
+
+    private fun loginWithFirebase(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    sendHomeData()
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
     }
 
