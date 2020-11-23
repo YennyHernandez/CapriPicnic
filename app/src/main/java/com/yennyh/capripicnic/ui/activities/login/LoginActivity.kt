@@ -6,14 +6,13 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View.OnFocusChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.ui.activities.drawer.NavigationDrawerActivity
+import com.yennyh.capripicnic.ui.activities.home.HomeActivity
 import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
 import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -57,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
             isValidPassword = onValidPassword(password)
 
             if (isValidEmail && isValidPassword) {
-                loginEmailAndPassword(email, password)
+                loginWithEmailAndPassword(email, password)
             }
         }
 
@@ -160,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
         return isValid
     }
 
-    private fun loginEmailAndPassword(email: String, password: String) {
+    private fun loginWithEmailAndPassword(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -175,7 +174,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun sendHomeData() {
-        val home = Intent(this, NavigationDrawerActivity::class.java)
+        val home = Intent(this, HomeActivity::class.java)
         startActivity(home)
         finish()
     }

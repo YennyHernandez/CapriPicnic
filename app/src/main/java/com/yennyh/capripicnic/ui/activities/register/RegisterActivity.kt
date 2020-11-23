@@ -124,14 +124,14 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun crearUsuarioEnBaseDeDatos(uid: String?, email: String, name: String, phone: String) {
         val database = FirebaseDatabase.getInstance()
-        val myUsersReference =
-            database.getReference("usuarios")   //me paro en la tabla que deseo y si no existe la crea
+        val myUsersReference = database.getReference("usuarios")   //me paro en la tabla que deseo y si no existe la crea
         //val id = myUsersReference.push().key //agrega id aleatoriamente pero como queriamos el mismo del que se resistro uso eol uid
         val usuario = Usuario(uid, name, email, phone)  //instancia el objeto (clase usuario)
         uid?.let {
             myUsersReference.child(uid).setValue(usuario)
         }  // mejor practica para no quitar la propiedade de null
         backToLogin()
+
     }
 
     private fun onValidName(name: String): Boolean {
@@ -216,7 +216,6 @@ class RegisterActivity : AppCompatActivity() {
         startActivity(login)
         finish()
     }
-
 
 }
 

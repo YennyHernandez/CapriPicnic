@@ -15,11 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <activity android:name=".ui.activities.home.HomeActivity"></activity>
         <activity
-            android:name=".ui.activities.buttom.Buttom_navegation_Activity"
-            android:label="@string/title_activity_buttom_navegation_">
-
-        </activity>
+            android:name=".ui.activities.buttom.BottomNavigationActivity"
+            android:label="@string/title_activity_buttom_navegation_"></activity>
         <activity
             android:name=".ui.activities.drawer.NavigationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
@@ -38,7 +37,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".ui.activities.register.RegisterActivity" />
         <activity android:name=".ui.activities.login.LoginActivity" />
