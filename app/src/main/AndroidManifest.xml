@@ -15,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activities.home.HomeActivity"></activity>
+        <activity android:name=".ui.activities.home.HomeActivity" />
         <activity
-            android:name=".ui.activities.buttom.BottomNavigationActivity"
-            android:label="@string/title_activity_buttom_navegation_"></activity>
+            android:name=".ui.activities.navigation.bottom.BottomNavigationActivity"
+            android:label="@string/title_activity_buttom_navegation_" />
         <activity
-            android:name=".ui.activities.drawer.NavigationDrawerActivity"
+            android:name="com.yennyh.capripicnic.ui.activities.navigation.drawer.NavigationDrawerActivity"
             android:label="@string/title_activity_navegation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
 

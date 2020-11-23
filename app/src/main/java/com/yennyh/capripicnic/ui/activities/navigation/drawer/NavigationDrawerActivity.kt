@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.activities.drawer
+package com.yennyh.capripicnic.ui.activities.navigation.drawer
 
 import android.content.Intent
 import android.os.Bundle
@@ -52,7 +52,7 @@ class NavigationDrawerActivity : AppCompatActivity() {
                 R.id.nav_myaccount,
                 R.id.nav_myQuotes,
                 R.id.nav_myPurchase,
-                R.id.nav_myReservations
+                R.id.nav_reservations
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

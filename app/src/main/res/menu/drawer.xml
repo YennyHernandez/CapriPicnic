@@ -20,7 +20,7 @@
         android:title="@string/my_purchase"
         app:showAsAction="never" />
     <item
-        android:id="@+id/nav_myReservations"
+        android:id="@+id/nav_reservations"
         android:orderInCategory="100"
         android:title="@string/my_reservations"
         app:showAsAction="never" />

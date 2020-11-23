@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.ui.activities.buttom.BottomNavigationActivity
-import com.yennyh.capripicnic.ui.activities.drawer.NavigationDrawerActivity
+import com.yennyh.capripicnic.ui.activities.navigation.bottom.BottomNavigationActivity
+import com.yennyh.capripicnic.ui.activities.navigation.drawer.NavigationDrawerActivity
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +15,7 @@ class HomeActivity : AppCompatActivity() {
 
         val drawer= Intent(this, NavigationDrawerActivity::class.java)
         startActivity(drawer)
-        val bottom= Intent(this, BottomNavigationActivity::class.java)
-        startActivity(bottom)
+//        val bottom= Intent(this, BottomNavigationActivity::class.java)
+//        startActivity(bottom)
     }
 }
