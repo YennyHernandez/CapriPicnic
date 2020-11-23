@@ -29,34 +29,19 @@ class LoginActivity : AppCompatActivity() {
     private var emailOnFirstLeaveFocus: Boolean = false
     private var passwordOnFirstLeaveFocus: Boolean = false
     private var doubleBackToExitPressedOnce = false
-    private var correctName: String = ""
-    private var correctEmail: String = ""
-    private var correctPassword: String = ""
-    private val emailAdmin = "jaidiver.gomez@udea.edu.co"
-    private val passwordAdmin = "Fifi6481&"
     private lateinit var auth: FirebaseAuth
-    companion object {
-        private val TAG = RegisterActivity::class.simpleName
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
-        val inputDataUser = intent.extras
-        correctName = inputDataUser?.getString("name").toString()
-        correctEmail = inputDataUser?.getString("email").toString()
-        correctPassword = inputDataUser?.getString("password").toString()
-
-        email_editText.setText(if (correctEmail != "null") correctEmail else "")
-        password_editText.setText(if (correctPassword != "null") correctPassword else "")
         //Setup
         setup()
-        auth = FirebaseAuth.getInstance()
     }
 
     private fun setup() {
+        auth = FirebaseAuth.getInstance()
         email_editText.addTextChangedListener(textWatcher)
         password_editText.addTextChangedListener(textWatcher)
 
@@ -72,9 +57,7 @@ class LoginActivity : AppCompatActivity() {
             isValidPassword = onValidPassword(password)
 
             if (isValidEmail && isValidPassword) {
-                loginWithFirebase(email, password)
-                login()
-
+                loginEmailAndPassword(email, password)
             }
         }
 
@@ -94,25 +77,6 @@ class LoginActivity : AppCompatActivity() {
                     .show()
             }
         }
-
-    }
-
-    private fun loginWithFirebase(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    sendHomeData()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
 
     }
 
@@ -189,41 +153,29 @@ class LoginActivity : AppCompatActivity() {
             password_textFieldLayout.error = "La contraseña es requerida!"
         } else if (!isValid) {
             password_textFieldLayout.error =
-                "La contraseña debe conterner al menos un letra minuscula, una mayuscula un numero, un caracter especial y al menos 8 caracteres!" //TODO: Investigar como obtener el error
+                "Ingrese al menos 8 caracteres que contenga un letra minuscula, una mayuscula, un numero, un caracter especial!" //TODO: Investigar como obtener el error
         } else {
             password_textFieldLayout.error = null
         }
         return isValid
     }
 
-    private fun login() {
-        if (correctEmail != "null" && correctPassword != "null") {
-            if (correctEmail == email && correctPassword == password) {
-                sendHomeData()
-            } else {
-                MaterialAlertDialogBuilder(this)
-                    .setMessage("Usuario o contraseña inválida!")
-                    .setNegativeButton("OK", null)
-                    .show()
+    private fun loginEmailAndPassword(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    sendHomeData()
+                } else {
+                    Toast.makeText(
+                        baseContext, "Authentication failed!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-
-        } else {
-            if (email == emailAdmin && password == passwordAdmin) {
-                sendHomeData()
-            } else {
-                MaterialAlertDialogBuilder(this)
-                    .setMessage("No se ha registrado nungún usuario, por favor cree una cuenta")
-                    .setNegativeButton("OK", null)
-                    .show()
-            }
-        }
     }
 
     private fun sendHomeData() {
         val home = Intent(this, NavigationDrawerActivity::class.java)
-        home.putExtra("name:", correctName)
-        home.putExtra("email", email)
-        home.putExtra("password", password)
         startActivity(home)
         finish()
     }

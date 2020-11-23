@@ -23,9 +23,7 @@ import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 
 class NavigationDrawerActivity : AppCompatActivity() {
 
-    private var name: String = ""
-    private var email: String = ""
-    private var password: String = ""
+    private var email: String = "jaidiver.gome@udea.edu.co"
     private var doubleBackToExitPressedOnce = false
 
 
@@ -35,12 +33,6 @@ class NavigationDrawerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navegation_drawer)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-
-        val inputDataUser = intent.extras
-
-        this.name = inputDataUser?.getString("name").toString()  //se obtiene la información
-        this.email = inputDataUser?.getString("email").toString()
-        this.password = inputDataUser?.getString("password").toString()
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -75,7 +67,7 @@ class NavigationDrawerActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.overflowMenu_logout -> {  //item del menu
-                sendLoguinData()
+                sendLoginData()
                 finish()
                 true
             }
@@ -89,11 +81,8 @@ class NavigationDrawerActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun sendLoguinData() {   //pasa la información y cambia de actividad
+    private fun sendLoginData() {   //pasa la información y cambia de actividad
         val login = Intent(this, LoginActivity::class.java)
-        login.putExtra("name:", name)
-        login.putExtra("email", email)
-        login.putExtra("password", password)
         startActivity(login)
         finish()
     }
