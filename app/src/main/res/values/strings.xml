@@ -46,6 +46,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="phone">Teléfono</string>
+    <string name="yogur">YOGUR</string>
+    <string name="leche">LECHE</string>
+    <string name="textview">TextView</string>
 
 
 </resources>
