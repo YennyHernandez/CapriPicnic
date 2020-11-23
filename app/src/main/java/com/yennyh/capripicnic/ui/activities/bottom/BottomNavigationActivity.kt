@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.activities.buttom
+package com.yennyh.capripicnic.ui.activities.bottom
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,7 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.yennyh.capripicnic.R
 
-class Buttom_navegation_Activity : AppCompatActivity() {
+class BottomNavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +21,9 @@ class Buttom_navegation_Activity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_reservations, R.id.navigation_products
+                R.id.navigation_home,
+                R.id.navigation_reservations,
+                R.id.navigation_products
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

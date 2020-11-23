@@ -10,7 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.server.Usuario
+import com.yennyh.capripicnic.models.Users
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
@@ -111,7 +111,7 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->   //si se realizo lo anterior continua
                 if (task.isSuccessful) {
                     val uid = auth.currentUser?.uid  //copia el id asociado a ese registro que crea firebase automaticamente
-                    crearUsuarioEnBaseDeDatos(uid, email,name,phone)
+                    createUserTable(uid, email,name, phone)
                 } else {
                     Toast.makeText(
                         baseContext, "Register failed.",
@@ -122,12 +122,13 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun crearUsuarioEnBaseDeDatos(uid: String?, email: String, name: String, phone: String) {
+
+    private fun createUserTable(uid: String?, email: String, name: String, phone: String) {
         val database = FirebaseDatabase.getInstance()
         val myUsersReference =
-            database.getReference("usuarios")   //me paro en la tabla que deseo y si no existe la crea
+            database.getReference("users")   //me paro en la tabla que deseo y si no existe la crea
         //val id = myUsersReference.push().key //agrega id aleatoriamente pero como queriamos el mismo del que se resistro uso eol uid
-        val usuario = Usuario(uid, name, email, phone)  //instancia el objeto (clase usuario)
+        val usuario = Users(uid, name, email, phone)  //instancia el objeto (clase usuario)
         uid?.let {
             myUsersReference.child(uid).setValue(usuario)
         }  // mejor practica para no quitar la propiedade de null

@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".ui.activities.buttom.Buttom_navegation_Activity"
+            android:name=".ui.activities.bottom.BottomNavigationActivity"
             android:label="@string/title_activity_buttom_navegation_">
 
         </activity>
