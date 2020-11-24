@@ -5,10 +5,6 @@
     app:startDestination="@id/nav_myaccount">
 
     <fragment
-        android:id="@+id/nav_myaccount"
-        android:name="com.yennyh.capripicnic.ui.fragments.my_accountFragment"
-        android:label="@string/my_account" />
-    <fragment
         android:id="@+id/nav_myQuotes"
         android:name="com.yennyh.capripicnic.ui.fragments.my_coute"
         android:label="@string/my_quote" />
@@ -16,4 +12,12 @@
         android:id="@+id/nav_myPurchase"
         android:name="com.yennyh.capripicnic.ui.fragments.my_purchase"
         android:label="@string/my_purchase" />
+    <fragment
+        android:id="@+id/nav_reservations"
+        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
+        android:label="@string/reservations" />
+    <fragment
+        android:id="@+id/nav_myaccount"
+        android:name="com.yennyh.capripicnic.ui.fragments.my_accountFragment"
+        android:label="@string/my_account" />
 </navigation>

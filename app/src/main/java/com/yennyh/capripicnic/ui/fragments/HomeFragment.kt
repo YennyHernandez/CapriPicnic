@@ -9,8 +9,6 @@ import com.yennyh.capripicnic.R
 
 
 class HomeFragment : Fragment() {
-    private var param2: String? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

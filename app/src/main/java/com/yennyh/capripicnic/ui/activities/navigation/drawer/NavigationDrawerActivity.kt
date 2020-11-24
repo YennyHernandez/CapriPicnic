@@ -50,9 +50,10 @@ class NavigationDrawerActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_myQuotes,
                 R.id.nav_myPurchase,
-                R.id.nav_myaccount,
+                R.id.nav_myQuotes,
+                R.id.nav_reservations,
+                R.id.nav_myaccount
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

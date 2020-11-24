@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.lists
+package com.yennyh.capripicnic.ui.fragments
 
 
 import android.os.Bundle

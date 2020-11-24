@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_reservations"
-        android:name="com.yennyh.capripicnic.lists.ReservationsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
         android:label="fragment_reservations"
         tools:layout="@layout/fragment_reservations" />
     <fragment
