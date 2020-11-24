@@ -15,14 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.activities.home.HomeActivity" />
         <activity
             android:name=".ui.activities.navigation.bottom.BottomNavigationActivity"
-            android:label="@string/title_activity_buttom_navegation_" />
+            android:label="@string/title_activity_bottom_navigation" />
         <activity
             android:name="com.yennyh.capripicnic.ui.activities.navigation.drawer.NavigationDrawerActivity"
-            android:label="@string/title_activity_navegation_drawer"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_navegation_drawer" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -41,5 +39,4 @@
         <activity android:name=".ui.activities.register.RegisterActivity" />
         <activity android:name=".ui.activities.login.LoginActivity" />
     </application>
-
 </manifest>

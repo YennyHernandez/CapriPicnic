@@ -10,13 +10,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yennyh.capripicnic.R
 
 class BottomNavigationActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navegation)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navView: BottomNavigationView = findViewById(R.id.nav_view_bottom_navigation)
+        val navController = findNavController(R.id.nav_host_bottom)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(

@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/yogur_description"
+        android:text="@string/yogurt_description"
         android:textAlignment="center"
         android:textColor="#F44336"
         app:layout_constraintEnd_toEndOf="parent"

@@ -38,21 +38,21 @@ class NavigationDrawerActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navView: NavigationView = findViewById(R.id.nav_drawer_navigation_view)
+        val navController = findNavController(R.id.nav_host_drawer)
 
 
-        val navigationView = this.findViewById<View>(R.id.nav_view) as NavigationView
+        val navigationView =
+            this.findViewById<View>(R.id.nav_drawer_navigation_view) as NavigationView
         val header = navigationView.getHeaderView(0)
         val emailNavHeader: TextView = header.findViewById(R.id.email_navHeader)
         emailNavHeader.text = email
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_myaccount,
                 R.id.nav_myQuotes,
                 R.id.nav_myPurchase,
-                R.id.nav_reservations
+                R.id.nav_myaccount,
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -77,7 +77,7 @@ class NavigationDrawerActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = findNavController(R.id.nav_host_drawer)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 

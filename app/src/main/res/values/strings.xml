@@ -19,8 +19,8 @@
     <string name="products_fragment_description">"SESION DE LISTADO DE LOS 4 PRODUCTOS (leche, yogur, arequipe, queso) "</string>
     <string name="home_fragment_description">"SESION DE LISTADO y DESCRIPCION DE ACTIVIDADES  (picnic, senderismo, gastronomia, granja) "</string>
     <string name="reservations__description">"SESION DE LISTADO DE LOS 4 TEMAS DE PICNIC (lovers,rest,celebration) "</string>
-    <string name="arequipe_description">" Descripción de producto arequipe"</string>
-    <string name="yogur_description">" Descripción de producto yogurt"</string>
+    <string name="caramelized_milk_description">" Descripción de producto arequipe"</string>
+    <string name="yogurt_description">" Descripción de producto yogurt"</string>
     <string name="cheese_description">"  Descripción de producto cheese"</string>
     <string name="milk_description">" Descripción de producto milk"</string>
     <string name="lovers_description">" Descripción de producto picnic lovers"</string>
@@ -39,16 +39,14 @@
     <string name="nav_title_capripicnic">CapriPicnic</string>
     <string name="my_reservations">Mis reservaciones</string>
     <string name="products">Productos</string>
-    <string name="title_activity_buttom_navegation_">MainActivity</string>
+    <string name="title_activity_bottom_navigation">MainActivity</string>
     <string name="home">Home</string>
-    <string name="reservatios">Reservaciones</string>
+    <string name="reservations">Reservaciones</string>
     <string name="my_reservations_description"> Lista de las reservaciones pagadas</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="phone">Teléfono</string>
-    <string name="yogur">YOGUR</string>
-    <string name="leche">LECHE</string>
-    <string name="textview">TextView</string>
+    <string name="yogurt">YOGUR</string>
+    <string name="milk">LECHE</string>
+    <string name="textView">TextView</string>
 
 
 </resources>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/nav_myaccount">
 
@@ -17,9 +16,4 @@
         android:id="@+id/nav_myPurchase"
         android:name="com.yennyh.capripicnic.ui.fragments.my_purchase"
         android:label="@string/my_purchase" />
-    <fragment
-        android:id="@+id/nav_reservations"
-        android:name="com.yennyh.capripicnic.lists.ReservationsFragment"
-        android:label="fragment_reservations"
-        tools:layout="@layout/fragment_reservations" />
 </navigation>
