@@ -47,6 +47,8 @@
     <string name="yogurt">YOGUR</string>
     <string name="milk">LECHE</string>
     <string name="textView">TextView</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="map">Map</string>
 
 
 </resources>

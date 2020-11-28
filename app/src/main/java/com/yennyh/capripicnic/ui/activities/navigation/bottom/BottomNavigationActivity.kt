@@ -21,7 +21,8 @@ class BottomNavigationActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_home,
                 R.id.nav_reservations,
-                R.id.nav_products
+                R.id.nav_products,
+                R.id.nav_map
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
