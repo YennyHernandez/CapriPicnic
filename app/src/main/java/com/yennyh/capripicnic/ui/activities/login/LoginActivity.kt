@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.ui.activities.navigation.drawer.NavigationDrawerActivity
+import com.yennyh.capripicnic.ui.activities.navigation.bottom.BottomNavigationActivity
 import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
 import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -174,7 +174,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun sendHomeData() {
-        val drawer = Intent(this, NavigationDrawerActivity::class.java)
+        val drawer = Intent(this, BottomNavigationActivity::class.java)
         startActivity(drawer)
         finish()
     }

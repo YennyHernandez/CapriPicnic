@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.mapa
+package com.yennyh.capripicnic.ui.map
 
 import android.Manifest
 import android.content.pm.PackageManager

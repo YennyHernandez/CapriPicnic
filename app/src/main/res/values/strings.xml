@@ -30,7 +30,7 @@
     <string name="payment_description">"Aviso de pago con terminos y condiciones y boton de confirmar compra"</string>
     <string name="my_quotes_description">"lista de todas las cotizaciones realizadas y guardadas con opciones de eliminar, editar o comprar"</string>
     <string name="my_purchases_description">"lista de todas las compras hechas con boton de solicitar cambio"</string>
-    <string name="title_activity_navegation_drawer">NavegationDrawerActivity</string>
+    <string name="title_activity_navigation_drawer">NavegationDrawerActivity</string>
     <string name="action_settings">Settings</string>
     <string name="my_quote">Mis cotizaciones</string>
     <string name="my_account">Mi cuenta</string>
