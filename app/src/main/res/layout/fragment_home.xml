@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/homeFragment"
-    tools:context=".ui.fragments.products">
+    tools:context=".ui.fragments.ProductsFragment">
 
     <TextView
         android:id="@+id/home_textView"

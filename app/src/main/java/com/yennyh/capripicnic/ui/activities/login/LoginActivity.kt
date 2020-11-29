@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.ui.activities.navigation.bottom.BottomNavigationActivity
+import com.yennyh.capripicnic.ui.activities.main.MainActivity
 import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
 import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -163,7 +163,7 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    sendHomeData()
+                    sendMainActivity()
                 } else {
                     Toast.makeText(
                         baseContext, "Authentication failed!",
@@ -173,9 +173,9 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    private fun sendHomeData() {
-        val drawer = Intent(this, BottomNavigationActivity::class.java)
-        startActivity(drawer)
+    private fun sendMainActivity() {
+        val main = Intent(this, MainActivity::class.java)
+        startActivity(main)
         finish()
     }
 

@@ -5,23 +5,27 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_myQuotes"
+        android:id="@+id/myQuotesFragment"
         android:orderInCategory="100"
-        android:title="@string/my_quote"
+        android:icon="@drawable/ic_my_quotes"
+        android:title="@string/my_quotes"
         app:showAsAction="never" />
     <item
-        android:id="@+id/nav_myPurchase"
+        android:id="@+id/myPurchaseFragment"
         android:orderInCategory="100"
-        android:title="@string/my_purchase"
+        android:icon="@drawable/ic_my_purchases"
+        android:title="@string/my_purchases"
         app:showAsAction="never" />
     <item
-        android:id="@+id/nav_reservations"
+        android:id="@+id/myReservationsFragment"
         android:orderInCategory="100"
         android:title="@string/my_reservations"
+        android:icon="@drawable/ic_my_reservations"
         app:showAsAction="never" />
     <item
-        android:id="@+id/nav_myaccount"
+        android:id="@+id/myAccountFragment"
         android:orderInCategory="100"
         android:title="@string/my_account"
+        android:icon="@drawable/ic_my_account"
         app:showAsAction="never" />
 </menu>

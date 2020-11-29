@@ -24,6 +24,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.yennyh.capripicnic.ui.activities.main.MainActivity"
+            android:theme="@style/NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -31,12 +35,6 @@
         <activity
             android:name="com.yennyh.capripicnic.ui.map.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name="com.yennyh.capripicnic.ui.activities.navigation.bottom.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation" />
-        <activity
-            android:name="com.yennyh.capripicnic.ui.activities.navigation.drawer.NavigationDrawerActivity"
-            android:label="@string/title_activity_navigation_drawer" />
         <activity android:name="com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity" />
         <activity
             android:name="com.yennyh.capripicnic.SplashActivity"

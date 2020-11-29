@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <!--Drawer and bottom navigation fragments-->
+    <fragment
+        android:id="@+id/myQuotesFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MyQuotesFragment"
+        android:label="@string/my_quotes" />
+    <fragment
+        android:id="@+id/myPurchaseFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MyPurchasesFragment"
+        android:label="@string/my_purchases" />
+    <fragment
+        android:id="@+id/myReservationsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
+        android:label="@string/my_reservations" />
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MyAccountFragment"
+        android:label="@string/my_account" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.HomeFragment"
+        android:label="@string/home" />
+    <fragment
+        android:id="@+id/reservationsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
+        android:label="@string/reservations"
+        tools:layout="@layout/fragment_reservations" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ProductsFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_products" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.yennyh.capripicnic.ui.map.MapsFragment"
+        android:label="@string/maps"
+        tools:layout="@layout/fragment_maps" />
+
+</navigation>
