@@ -11,6 +11,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+
 class MapsFragment : SupportMapFragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,14 +24,19 @@ class MapsFragment : SupportMapFragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: GoogleMap) {
+        map.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        val capripicniclt = LatLng(1.8575204, -76.0854647)
+        val capriPicnicLt = LatLng(1.8575204, -76.0854647)
         map.addMarker(
-            MarkerOptions().position(capripicniclt).title("CapriPicinic").snippet("cabras y picnic")
+            MarkerOptions().position(capriPicnicLt).title("CapriPicnic").snippet("Cabras y picnic")
         )
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(capripicniclt, 15f))
-    }
+        map.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(capriPicnicLt, 15f),
+            4000,
+            null
+        )
 
+    }
 
 }
 

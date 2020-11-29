@@ -1,9 +1,14 @@
 package com.yennyh.capripicnic.ui.activities.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -16,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var doubleBackToExitPressedOnce = false
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
@@ -25,14 +31,13 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.main_nav_host) //Initialising navController
 
-        @Suppress("DEPRECATION")
         appBarConfiguration = AppBarConfiguration.Builder(
             R.id.myQuotesFragment, R.id.myPurchaseFragment,
             R.id.myReservationsFragment, R.id.myAccountFragment,
             R.id.homeFragment, R.id.reservationsFragment,
             R.id.productsFragment, R.id.mapsFragment
         ) //Pass the ids of fragments from nav_graph which you d'ont want to show back button in toolbar
-            .setDrawerLayout(main_drawer_layout) //Pass the drawer layout id from activity xml
+            .setOpenableLayout(drawer_layout) //Pass the drawer layout id from activity xml
             .build()
 
         setSupportActionBar(main_toolbar) //Set toolbar
@@ -58,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.myReservationsFragment,
                 R.id.myAccountFragment,
                 R.id.mapsFragment -> hideBothNavigation()
-//                R.id.settingsFragment -> hideBottomNavigation()
                 else -> showBothNavigation()
             }
         }
@@ -68,13 +72,13 @@ class MainActivity : AppCompatActivity() {
     private fun hideBothNavigation() { //Hide both drawer and bottom navigation bar
         main_bottom_navigation_view?.visibility = View.GONE
         main_navigation_view?.visibility = View.GONE
-        main_drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) //To lock navigation drawer so that it don't respond to swipe gesture
+        drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) //To lock navigation drawer so that it don't respond to swipe gesture
     }
 
     private fun hideBottomNavigation() { //Hide bottom navigation
         main_bottom_navigation_view?.visibility = View.GONE
         main_navigation_view?.visibility = View.VISIBLE
-        main_drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) //To unlock navigation drawer
+        drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) //To unlock navigation drawer
 
         main_navigation_view?.setupWithNavController(navController) //Setup Drawer navigation with navController
     }
@@ -82,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     private fun showBothNavigation() {
         main_bottom_navigation_view?.visibility = View.VISIBLE
         main_navigation_view?.visibility = View.VISIBLE
-        main_drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         setupNavControl() //To configure navController with drawer and bottom navigation
     }
 
@@ -91,18 +95,31 @@ class MainActivity : AppCompatActivity() {
         main_bottom_navigation_view?.setupWithNavController(navController) //Setup Bottom navigation with navController
     }
 
-    fun exitApp() { //To exit the application call this function from fragment
-        this.finishAffinity()
-    }
-
     override fun onSupportNavigateUp(): Boolean { //Setup appBarConfiguration for back arrow
         return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 
     override fun onBackPressed() {
         when { //If drawer layout is open close that on back pressed
-            main_drawer_layout.isDrawerOpen(GravityCompat.START) -> {
-                main_drawer_layout.closeDrawer(GravityCompat.START)
+            drawer_layout.isDrawerOpen(GravityCompat.START) -> {
+                drawer_layout.closeDrawer(GravityCompat.START)
+            }
+            main_bottom_navigation_view.isVisible -> {
+                if (doubleBackToExitPressedOnce) {
+                    val exit = Intent(Intent.ACTION_MAIN)
+                    exit.addCategory(Intent.CATEGORY_HOME)
+                    startActivity(exit)
+                    finish()
+                }
+
+                this.doubleBackToExitPressedOnce = true
+                Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    run {
+                        doubleBackToExitPressedOnce = false
+                    }
+                }, 2000)
             }
             else -> {
                 super.onBackPressed() //If drawer is already in closed condition then go back
