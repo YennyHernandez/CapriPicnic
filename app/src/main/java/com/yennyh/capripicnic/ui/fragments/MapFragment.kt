@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.map
+package com.yennyh.capripicnic.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapsFragment : SupportMapFragment(), OnMapReadyCallback {
+class MapFragment : SupportMapFragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,4 +39,3 @@ class MapsFragment : SupportMapFragment(), OnMapReadyCallback {
     }
 
 }
-

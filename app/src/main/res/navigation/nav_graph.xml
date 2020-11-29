@@ -39,8 +39,8 @@
         tools:layout="@layout/fragment_products" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.yennyh.capripicnic.ui.map.MapsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
         android:label="@string/maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_map" />
 
 </navigation>
