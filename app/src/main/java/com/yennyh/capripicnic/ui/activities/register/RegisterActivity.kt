@@ -218,7 +218,6 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
-
 }
 
 

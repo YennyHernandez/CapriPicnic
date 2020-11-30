@@ -26,16 +26,15 @@ class MapFragment : SupportMapFragment(), OnMapReadyCallback {
     override fun onMapReady(map: GoogleMap) {
         map.mapType = GoogleMap.MAP_TYPE_HYBRID
 
-        val capriPicnicLt = LatLng(1.8575204, -76.0854647)
+        val capriPicnicLt = LatLng(1.8579228, -76.084981)
         map.addMarker(
             MarkerOptions().position(capriPicnicLt).title("CapriPicnic").snippet("Cabras y picnic")
         )
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(capriPicnicLt, 15f),
+            CameraUpdateFactory.newLatLngZoom(capriPicnicLt, 16f),
             4000,
             null
         )
-
     }
 
 }
