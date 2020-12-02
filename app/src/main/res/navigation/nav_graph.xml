@@ -16,7 +16,7 @@
         android:label="@string/my_purchases" />
     <fragment
         android:id="@+id/myReservationsFragment"
-        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MyReservationsFragment"
         android:label="@string/my_reservations" />
     <fragment
         android:id="@+id/myAccountFragment"
@@ -31,7 +31,11 @@
         android:id="@+id/reservationsFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
         android:label="@string/reservations"
-        tools:layout="@layout/fragment_reservations" />
+        tools:layout="@layout/fragment_reservations">
+        <action
+            android:id="@+id/action_reservationsFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.ProductsFragment"
@@ -42,5 +46,14 @@
         android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
         android:label="@string/maps"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.yennyh.capripicnic.ui.detalle.DetalleFragment"
+        android:label="fragment_detalle"
+        tools:layout="@layout/fragment_detalle">
+        <argument
+            android:name="ThemaSeleccionado"
+            app:argType="com.yennyh.capripicnic.models.ThematicsPicnics" />
+    </fragment>
 
 </navigation>

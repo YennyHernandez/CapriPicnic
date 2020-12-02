@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.google.firebase.database.DataSnapshot
@@ -17,7 +18,7 @@ import com.yennyh.capripicnic.databinding.FragmentReservationsBinding
 import com.yennyh.capripicnic.models.ThematicsPicnics
 import com.yennyh.capripicnic.ui.lista.ThematicsRVAdapter
 
-class ReservationsFragment : Fragment() {
+class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener {
     private lateinit var contentRVAdapter: ThematicsRVAdapter
     private lateinit var binding: FragmentReservationsBinding
 
@@ -36,7 +37,10 @@ class ReservationsFragment : Fragment() {
         binding.ReservationsRecyclerView.layoutManager =
             LinearLayoutManager(context, VERTICAL, false)
         binding.ReservationsRecyclerView.setHasFixedSize(true)
-        contentRVAdapter = ThematicsRVAdapter(listThematics as ArrayList<ThematicsPicnics>)
+        contentRVAdapter = ThematicsRVAdapter(
+            listThematics as ArrayList<ThematicsPicnics>,
+            this@ReservationsFragment
+        )
         binding.ReservationsRecyclerView.adapter =
             contentRVAdapter   // hay que cargarle la información
         loadFromFirebase()
@@ -65,6 +69,14 @@ class ReservationsFragment : Fragment() {
             }
 
         myThematicsRef.addValueEventListener(postListener)  //agrega la información cargada
+    }
+
+    override fun onItemClick(thematic: ThematicsPicnics) {  //obtiene la información de lo que se presiono
+        // val action = ReservationsFragmentDirections.actionReservaFragmentToDetalleFragment(thematic)
+        val action =
+            ReservationsFragmentDirections.actionReservationsFragmentToDetalleFragment(thematic)
+        findNavController().navigate(action)
+
     }
 
 }

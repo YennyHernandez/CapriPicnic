@@ -9,16 +9,19 @@ import com.yennyh.capripicnic.databinding.ListServicesItemBinding
 import com.yennyh.capripicnic.models.ThematicsPicnics
 
 
-class ThematicsRVAdapter(var thematicsList: ArrayList<ThematicsPicnics>) :
+class ThematicsRVAdapter(
+    var thematicsList: ArrayList<ThematicsPicnics>,
+    val onItemClickListener: OnItemClickListener
+) :
     RecyclerView.Adapter<ThematicsRVAdapter.ListThematicsViewHolder>() {
-    
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ListThematicsViewHolder {//inflar item
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.list_services_item, parent, false)
-        return ListThematicsViewHolder(itemView)
+        return ListThematicsViewHolder(itemView, onItemClickListener)
     }
 
     override fun onBindViewHolder(
@@ -34,13 +37,23 @@ class ThematicsRVAdapter(var thematicsList: ArrayList<ThematicsPicnics>) :
         return thematicsList.size
     }
 
-    class ListThematicsViewHolder(itemView: View) :
+
+    class ListThematicsViewHolder(
+        itemView: View, var onItemClickListener: OnItemClickListener
+    ) :
         RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
         private val binding = ListServicesItemBinding.bind(itemView)
 
         fun bindThematic(thematic: ThematicsPicnics) {
             binding.titleTextView.text = thematic.description
+            binding.itemCardView.setOnClickListener {
+                onItemClickListener.onItemClick(thematic)
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(thematic: ThematicsPicnics)
     }
 
 }
