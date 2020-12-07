@@ -6,54 +6,54 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.ListServicesItemBinding
-import com.yennyh.capripicnic.models.ThematicsPicnics
+import com.yennyh.capripicnic.models.TypeProducts
 
 
-class ThematicsRVAdapter(
-    var thematicsList: ArrayList<ThematicsPicnics>,
+class TypeProductsRVAdapter(
+    var productsList: ArrayList<TypeProducts>,
     val onItemClickListener: OnItemClickListener
 ) :
-    RecyclerView.Adapter<ThematicsRVAdapter.ListThematicsViewHolder>() {
+    RecyclerView.Adapter<TypeProductsRVAdapter.ListProductsViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ListThematicsViewHolder {//inflar item
+    ): ListProductsViewHolder {//inflar item
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.list_services_item, parent, false)
-        return ListThematicsViewHolder(itemView, onItemClickListener)
+        return ListProductsViewHolder(itemView, onItemClickListener)
     }
 
     override fun onBindViewHolder(
-        holder: ListThematicsViewHolder,
+        holder: ListProductsViewHolder,
         position: Int
     ) {  //datos que voy a mostrar de la lista dependiendo de la posicion
-        val service = thematicsList[position]
+        val service = productsList[position]
         holder.bindThematic(service)
 
     }
 
     override fun getItemCount(): Int { //retorna el tamaño de la lista n veces
-        return thematicsList.size
+        return productsList.size
     }
 
 
-    class ListThematicsViewHolder(
+    class ListProductsViewHolder(
         itemView: View, var onItemClickListener: OnItemClickListener
     ) :
         RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
         private val binding = ListServicesItemBinding.bind(itemView)
 
-        fun bindThematic(thematic: ThematicsPicnics) {
-            binding.titleTextView.text = thematic.description
+        fun bindThematic(products: TypeProducts) {
+            binding.titleTextView.text = products.description
             binding.itemCardView.setOnClickListener {
-                onItemClickListener.onItemClick(thematic)
+                onItemClickListener.onItemClick(products)
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(thematic: ThematicsPicnics)
+        fun onItemClick(products: TypeProducts)
     }
 
 }

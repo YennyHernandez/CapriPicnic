@@ -25,7 +25,7 @@ class DetalleFragment : Fragment() {
         binding = FragmentDetalleBinding.bind(view)
 
         val args: DetalleFragmentArgs by navArgs()
-        val themeDetalle = args.ThemaSeleccionado
+        val themeDetalle = args.themesSeleccionado
         binding.nombreTextView.text = themeDetalle.description
         binding.nameTextView.text = themeDetalle.name
 

@@ -29,7 +29,7 @@
         android:label="@string/home" />
     <fragment
         android:id="@+id/reservationsFragment"
-        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ProductsFragment"
         android:label="@string/reservations"
         tools:layout="@layout/fragment_reservations">
         <action
@@ -40,7 +40,11 @@
         android:id="@+id/productsFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.ProductsFragment"
         android:label="@string/products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_productsFragment_to_detalleProductsFragment"
+            app:destination="@id/detalleProductsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
@@ -52,8 +56,17 @@
         android:label="fragment_detalle"
         tools:layout="@layout/fragment_detalle">
         <argument
-            android:name="ThemaSeleccionado"
+            android:name="themesSeleccionado"
             app:argType="com.yennyh.capripicnic.models.ThematicsPicnics" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleProductsFragment"
+        android:name="com.yennyh.capripicnic.ui.detalle.DetalleProductsFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_detalle_products">
+        <argument
+            android:name="productSeleccionado"
+            app:argType="com.yennyh.capripicnic.models.TypeProducts" />
     </fragment>
 
 </navigation>

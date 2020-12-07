@@ -1,6 +1,4 @@
 package com.yennyh.capripicnic.ui.fragments
-
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +13,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.FragmentReservationsBinding
+import com.yennyh.capripicnic.lists.ThematicsRVAdapter
 import com.yennyh.capripicnic.models.ThematicsPicnics
-import com.yennyh.capripicnic.ui.lista.ThematicsRVAdapter
 
 class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener {
     private lateinit var contentRVAdapter: ThematicsRVAdapter
@@ -24,14 +22,12 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
 
     var listThematics: MutableList<ThematicsPicnics> =
         mutableListOf()   //usado para bases de datos con firebaserealtime
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {// Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_reservations, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentReservationsBinding.bind(view)
         binding.ReservationsRecyclerView.layoutManager =
@@ -46,13 +42,10 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
         loadFromFirebase()
         contentRVAdapter.notifyDataSetChanged()
     }
-
     private fun loadFromFirebase() {
         val database = FirebaseDatabase.getInstance()   //instancia
         val myThematicsRef = database.getReference("thematics_picnics")  //referencia
-
         listThematics.clear()
-
         val postListener =
             object : ValueEventListener {  //hace un llamado y devuelve la información que contiene
                 override fun onDataChange(snapshot: DataSnapshot) {  //snaps es la data
@@ -63,11 +56,9 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
                     }
                     contentRVAdapter.notifyDataSetChanged()
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                 }
             }
-
         myThematicsRef.addValueEventListener(postListener)  //agrega la información cargada
     }
 
@@ -76,8 +67,6 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
         val action =
             ReservationsFragmentDirections.actionReservationsFragmentToDetalleFragment(thematic)
         findNavController().navigate(action)
-
     }
 
 }
-
