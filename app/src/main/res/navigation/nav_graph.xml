@@ -29,7 +29,7 @@
         android:label="@string/home" />
     <fragment
         android:id="@+id/reservationsFragment"
-        android:name="com.yennyh.capripicnic.ui.fragments.ProductsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.ReservationsFragment"
         android:label="@string/reservations"
         tools:layout="@layout/fragment_reservations">
         <action
@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_map" />
     <fragment
         android:id="@+id/detalleFragment"
-        android:name="com.yennyh.capripicnic.ui.detalle.DetalleFragment"
+        android:name="com.yennyh.capripicnic.ui.details_reciclyviews.DetalleFragment"
         android:label="fragment_detalle"
         tools:layout="@layout/fragment_detalle">
         <argument
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/detalleProductsFragment"
-        android:name="com.yennyh.capripicnic.ui.detalle.DetalleProductsFragment"
+        android:name="com.yennyh.capripicnic.ui.details_reciclyviews.DetalleProductsFragment"
         android:label="@string/products"
         tools:layout="@layout/fragment_detalle_products">
         <argument

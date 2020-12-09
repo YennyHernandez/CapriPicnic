@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -61,8 +64,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.myQuotesFragment,
                 R.id.myPurchaseFragment,
                 R.id.myReservationsFragment,
-                R.id.myAccountFragment,
-                R.id.mapsFragment -> hideBothNavigation()
+                R.id.myAccountFragment -> hideBothNavigation()
                 else -> showBothNavigation()
             }
         }
@@ -73,14 +75,6 @@ class MainActivity : AppCompatActivity() {
         main_bottom_navigation_view?.visibility = View.GONE
         main_navigation_view?.visibility = View.GONE
         drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) //To lock navigation drawer so that it don't respond to swipe gesture
-    }
-
-    private fun hideBottomNavigation() { //Hide bottom navigation
-        main_bottom_navigation_view?.visibility = View.GONE
-        main_navigation_view?.visibility = View.VISIBLE
-        drawer_layout?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) //To unlock navigation drawer
-
-        main_navigation_view?.setupWithNavController(navController) //Setup Drawer navigation with navController
     }
 
     private fun showBothNavigation() {
@@ -97,6 +91,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean { //Setup appBarConfiguration for back arrow
         return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.overflow_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.overflowMenu_logout -> {
+                val login = Intent(this, LoginActivity::class.java)
+                startActivity(login)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     }
 
     override fun onBackPressed() {

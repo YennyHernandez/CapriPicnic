@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.detalle
+package com.yennyh.capripicnic.ui.details_reciclyviews
 
 import android.os.Bundle
 import android.view.LayoutInflater

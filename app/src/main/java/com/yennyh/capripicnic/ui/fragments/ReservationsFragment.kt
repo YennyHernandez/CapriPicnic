@@ -63,7 +63,6 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
     }
 
     override fun onItemClick(thematic: ThematicsPicnics) {  //obtiene la información de lo que se presiono
-        // val action = ReservationsFragmentDirections.actionReservaFragmentToDetalleFragment(thematic)
         val action =
             ReservationsFragmentDirections.actionReservationsFragmentToDetalleFragment(thematic)
         findNavController().navigate(action)

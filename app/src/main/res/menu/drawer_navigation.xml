@@ -5,6 +5,11 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
         android:id="@+id/myQuotesFragment"
         android:orderInCategory="100"
         android:icon="@drawable/ic_my_quotes"

@@ -72,7 +72,6 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(products: TypeProducts) {  //obtiene la información de lo que se presiono
-        //val action = ReservationsFragmentDirections.actionReservaFragmentToDetalleFragment(thematic)
         val action =
             ProductsFragmentDirections.actionProductsFragmentToDetalleProductsFragment(products)
         findNavController().navigate(action)
