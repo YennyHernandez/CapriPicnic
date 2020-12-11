@@ -45,6 +45,7 @@ class TypeProductsRVAdapter(
         private val binding = ListServicesItemBinding.bind(itemView)
 
         fun bindThematic(products: TypeProducts) {
+           // Picasso.get().load(products.photos).into(binding.);
             binding.titleTextView.text = products.description
             binding.itemCardView.setOnClickListener {
                 onItemClickListener.onItemClick(products)

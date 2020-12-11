@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.ListServicesItemBinding
 import com.yennyh.capripicnic.models.ThematicsPicnics
@@ -45,6 +46,7 @@ class ThematicsRVAdapter(
         private val binding = ListServicesItemBinding.bind(itemView)
 
         fun bindThematic(thematic: ThematicsPicnics) {
+            Picasso.get().load(thematic.photos).into(binding.reservaImageView)
             binding.titleTextView.text = thematic.description
             binding.itemCardView.setOnClickListener {
                 onItemClickListener.onItemClick(thematic)

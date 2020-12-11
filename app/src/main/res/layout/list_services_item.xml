@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_card_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="150dp"
     android:layout_gravity="center"
     android:layout_margin="15dp"
     android:orientation="vertical"
@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
         android:paddingTop="10sp"
         android:paddingBottom="10sp">
 
@@ -22,27 +22,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="92dp"
+            android:layout_marginEnd="28dp"
             android:layout_marginBottom="16dp"
             android:text="@string/textView"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/reserva_imageView"
-            android:layout_width="102dp"
-            android:layout_height="81dp"
+            android:layout_width="129dp"
+            android:layout_height="112dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/title_textView"
-            app:layout_constraintHorizontal_bias="0.267"
+            app:layout_constraintHorizontal_bias="0.415"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.347"
+            app:layout_constraintVertical_bias="0.417"
             tools:ignore="ContentDescription"
             tools:srcCompat="@tools:sample/avatars" />
 
