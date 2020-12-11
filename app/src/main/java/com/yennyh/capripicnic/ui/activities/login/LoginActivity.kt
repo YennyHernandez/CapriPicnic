@@ -1,25 +1,27 @@
 package com.yennyh.capripicnic.ui.activities.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.services.AuthService
 import com.yennyh.capripicnic.ui.activities.main.MainActivity
 import com.yennyh.capripicnic.ui.activities.passwordrecovery.PasswordRecoveryActivity
 import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
-
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AuthService() {
 
     private var email: String = ""
     private var password: String = ""
@@ -28,15 +30,38 @@ class LoginActivity : AppCompatActivity() {
     private var emailOnFirstLeaveFocus: Boolean = false
     private var passwordOnFirstLeaveFocus: Boolean = false
     private var doubleBackToExitPressedOnce = false
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 
+        //Analytics Event
+        val analytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString("message", "Integración con Firebase completa")
+        analytics.logEvent("InitScreen", bundle)
+
         //Setup
         setup()
+        session()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        authLayout.visibility = View.VISIBLE
+    }
+
+    private fun session() {
+        val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        val email = prefs.getString("email", null)
+        val provider = prefs.getString("provider", null)
+
+        if (email != null && provider != null) {
+            authLayout.visibility = View.INVISIBLE
+            sendMainActivity()
+        }
     }
 
     private fun setup() {
@@ -56,8 +81,12 @@ class LoginActivity : AppCompatActivity() {
             isValidPassword = onValidPassword(password)
 
             if (isValidEmail && isValidPassword) {
-                loginWithEmailAndPassword(email, password)
+                signInWithEmailAndPassword(email, password)
             }
+        }
+
+        signIn_withGoogle_button.setOnClickListener {
+            signInWithGoogle()
         }
 
         singUp_textView.setOnClickListener {
@@ -157,20 +186,6 @@ class LoginActivity : AppCompatActivity() {
             password_textFieldLayout.error = null
         }
         return isValid
-    }
-
-    private fun loginWithEmailAndPassword(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    sendMainActivity()
-                } else {
-                    Toast.makeText(
-                        baseContext, "Authentication failed!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
     }
 
     private fun sendMainActivity() {

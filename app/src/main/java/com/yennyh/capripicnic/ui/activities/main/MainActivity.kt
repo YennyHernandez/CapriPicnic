@@ -19,10 +19,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.services.AuthService
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AuthService() {
 
     private var doubleBackToExitPressedOnce = false
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -101,9 +102,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.overflowMenu_logout -> {
-                val login = Intent(this, LoginActivity::class.java)
-                startActivity(login)
-                finish()
+                logout()
                 true
             }
             else -> super.onOptionsItemSelected(item)

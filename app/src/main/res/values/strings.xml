@@ -1,4 +1,5 @@
 <resources>
+    <string name="prefs_file">com.com.yennyh.capripicnic.PREFERENCES_FILE_KEY</string>
     <string name="app_name" translatable="false">CapriPicnic</string>
     <string name="logo">logo</string>
     <string name="Correo">Correo</string>
@@ -50,8 +51,6 @@
     <string name="title_activity_maps">Map</string>
     <string name="map">Map</string>
     <string name="maps">Mapas</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
+    <string name="sign_in_withGoogle">Iniciar sesión con Google</string>
 </resources>

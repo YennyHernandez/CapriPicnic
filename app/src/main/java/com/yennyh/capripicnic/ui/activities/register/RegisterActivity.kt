@@ -4,20 +4,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.models.Users
+import com.yennyh.capripicnic.models.User
+import com.yennyh.capripicnic.services.AuthService
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.regex.Pattern
 
 
-class RegisterActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+class RegisterActivity : AuthService() {
     private var name: String = ""
     private var phone: String = ""
     private var email: String = ""
@@ -77,8 +75,20 @@ class RegisterActivity : AppCompatActivity() {
             } else true
 
             if (isValidName && isValidEmail && isValidPassword && isValidPasswordVerified && isAcceptTerms) {
-                register(email, password, name, phone)
-            }else{
+                val user = User(
+                    name,
+                    "",
+                    "",
+                    0,
+                    email,
+                    password,
+                    null,
+                    null,
+                    "",
+                    "SUBSCRIBER"
+                )
+                newUser(user)
+            } else {
                 Toast.makeText(
                     baseContext, "Ingrese todos los campos correctamente.",
                     Toast.LENGTH_SHORT
@@ -106,35 +116,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun register(email: String, password: String, name: String, phone: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->   //si se realizo lo anterior continua
-                if (task.isSuccessful) {
-                    val uid = auth.currentUser?.uid  //copia el id asociado a ese registro que crea firebase automaticamente
-                    createUserTable(uid, email,name, phone)
-                } else {
-                    Toast.makeText(
-                        baseContext, "Register failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
-    }
-
-
-    private fun createUserTable(uid: String?, email: String, name: String, phone: String) {
-        val database = FirebaseDatabase.getInstance()
-        val myUsersReference =
-            database.getReference("users")   //me paro en la tabla que deseo y si no existe la crea
-        //val id = myUsersReference.push().key //agrega id aleatoriamente pero como queriamos el mismo del que se resistro uso eol uid
-        val usuario = Users(uid, name, email, phone)  //instancia el objeto (clase usuario)
-        uid?.let {
-            myUsersReference.child(uid).setValue(usuario)
-        }  // mejor practica para no quitar la propiedade de null
-        backToLogin()
-    }
-
     private fun onValidName(name: String): Boolean {
         val usernamePattern = Pattern.compile(
             "^" +
@@ -159,11 +140,11 @@ class RegisterActivity : AppCompatActivity() {
         val isValid = android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
 
         if (email.isEmpty()) {
-            emailRegister_textFieldLoyout.error = "El email es requerido!"
+            emailRegister_textFieldLayout.error = "El email es requerido!"
         } else if (!isValid) {
-            emailRegister_textFieldLoyout.error = "Ingrese un email válido!"
+            emailRegister_textFieldLayout.error = "Ingrese un email válido!"
         } else {
-            emailRegister_textFieldLoyout.error = null
+            emailRegister_textFieldLayout.error = null
         }
         return isValid
     }
@@ -203,7 +184,8 @@ class RegisterActivity : AppCompatActivity() {
                 passwordVerifiedRegister_textFieldLayout.error = null
             }
         } else {
-            passwordVerifiedRegister_textFieldLayout.error = "La contraseña de verificación es requida!"
+            passwordVerifiedRegister_textFieldLayout.error =
+                "La contraseña de verificación es requida!"
         }
         return isValid
     }
