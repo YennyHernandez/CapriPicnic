@@ -33,8 +33,17 @@
         android:label="@string/reservations"
         tools:layout="@layout/fragment_reservations">
         <action
-            android:id="@+id/action_reservationsFragment_to_detalleFragment"
-            app:destination="@id/detalleFragment" />
+            android:id="@+id/action_reservationsFragment_to_picnicViewDetailsFragment"
+            app:destination="@id/picnicViewDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/picnicViewDetailsFragment"
+        android:name="com.yennyh.capripicnic.shared.details_recyclerview.PicnicViewDetailsFragment"
+        android:label="@string/reservations"
+        tools:layout="@layout/fragment_picnic_view_details">
+        <argument
+            android:name="picnicViewSelected"
+            app:argType="com.yennyh.capripicnic.models.PicnicView" />
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
@@ -42,18 +51,16 @@
         android:label="@string/products"
         tools:layout="@layout/fragment_products">
         <action
-            android:id="@+id/action_productsFragment_to_detalleProductsFragment"
-            app:destination="@id/detalleProductsFragment" />
+            android:id="@+id/action_productsFragment_to_detailsProductFragment"
+            app:destination="@id/detailsProductViewFragment" />
     </fragment>
-
-
     <fragment
-        android:id="@+id/detalleProductsFragment"
-        android:name="com.yennyh.capripicnic.shared.details_reciclyviews.DetalleProductsFragment"
+        android:id="@+id/detailsProductViewFragment"
+        android:name="com.yennyh.capripicnic.shared.details_recyclerview.ProductViewDetailsFragment"
         android:label="@string/products"
-        tools:layout="@layout/fragment_detalle_products">
+        tools:layout="@layout/fragment_product_view_details">
         <argument
-            android:name="productSeleccionado"
+            android:name="productSelect"
             app:argType="com.yennyh.capripicnic.models.Product" />
     </fragment>
     <fragment
@@ -61,15 +68,4 @@
         android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
         android:label="@string/maps"
         tools:layout="@layout/fragment_map" />
-    <fragment
-        android:id="@+id/detalleFragment"
-        android:name="com.yennyh.capripicnic.shared.details_reciclyviews.DetalleFragment"
-        android:label="fragment_detalle"
-        tools:layout="@layout/fragment_detalle">
-        <argument
-            android:name="themesSeleccionado"
-            app:argType="com.yennyh.capripicnic.models.PicnicView" />
-    </fragment>
-
-
 </navigation>

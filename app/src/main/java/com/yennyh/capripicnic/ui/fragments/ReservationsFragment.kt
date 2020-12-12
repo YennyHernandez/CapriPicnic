@@ -13,15 +13,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.FragmentReservationsBinding
-import com.yennyh.capripicnic.shared.lists.ThematicsRVAdapter
 import com.yennyh.capripicnic.models.PicnicView
+import com.yennyh.capripicnic.shared.lists_adapters.PicnicViewRVAdapter
 
-class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener {
-    private lateinit var contentRVAdapter: ThematicsRVAdapter
+class ReservationsFragment : Fragment(), PicnicViewRVAdapter.OnItemClickListener {
+    private lateinit var contentRVAdapter: PicnicViewRVAdapter
     private lateinit var binding: FragmentReservationsBinding
 
     var listThematics: MutableList<PicnicView> =
         mutableListOf()   //usado para bases de datos con firebaserealtime
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +34,7 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
         binding.ReservationsRecyclerView.layoutManager =
             LinearLayoutManager(context, VERTICAL, false)
         binding.ReservationsRecyclerView.setHasFixedSize(true)
-        contentRVAdapter = ThematicsRVAdapter(
+        contentRVAdapter = PicnicViewRVAdapter(
             listThematics as ArrayList<PicnicView>,
             this@ReservationsFragment
         )
@@ -44,7 +45,7 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
     }
     private fun loadFromFirebase() {
         val database = FirebaseDatabase.getInstance()   //instancia
-        val myThematicsRef = database.getReference("thematics_picnics")  //referencia
+        val myThematicsRef = database.getReference("picnicView")  //referencia
         listThematics.clear()
         val postListener =
             object : ValueEventListener {  //hace un llamado y devuelve la información que contiene
@@ -62,9 +63,11 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
         myThematicsRef.addValueEventListener(postListener)  //agrega la información cargada
     }
 
-    override fun onItemClick(thematic: PicnicView) {  //obtiene la información de lo que se presiono
+    override fun onItemClick(picnicView: PicnicView) {  //obtiene la información de lo que se presiono
         val action =
-            ReservationsFragmentDirections.actionReservationsFragmentToDetalleFragment(thematic)
+            ReservationsFragmentDirections.actionReservationsFragmentToPicnicViewDetailsFragment(
+                picnicView
+            )
         findNavController().navigate(action)
     }
 

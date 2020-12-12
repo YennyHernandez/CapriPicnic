@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shared.details_reciclyviews.DetalleProductsFragment">
+    tools:context=".shared.details_recyclerview.ProductViewDetailsFragment">
 
 
     <TextView
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toStartOf="@+id/signIn_button"
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detalle_reserve_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/picnic_details_image_view" />
 
     <TextView
         android:id="@+id/name_text_view"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nombre_text_view" />
 
     <ImageView
-        android:id="@+id/detalle_reserve_imageView"
+        android:id="@+id/picnic_details_image_view"
         android:layout_width="352dp"
         android:layout_height="145dp"
         android:layout_marginStart="4dp"
@@ -57,7 +57,7 @@
         app:backgroundTint="@color/colorAccent"
         app:cornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detalle_reserve_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/picnic_details_image_view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

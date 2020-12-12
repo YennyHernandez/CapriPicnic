@@ -1,7 +1,5 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -9,14 +7,11 @@
 
     <style name="NoActionBar" parent="AppTheme">
         <item name="windowNoTitle">true</item>
-        <!--currently, I don't know why we need this property since use windowNoTitle only already help hide actionbar. I use it because it is used inside Theme.AppCompat.Light.NoActionBar (you can check Theme.AppCompat.Light.NoActionBar code). I think there are some missing case that I don't know-->
         <item name="windowActionBar">false</item>
     </style>
 
     <style name="SplashTheme" parent="NoActionBar">
         <item name="android:windowBackground">@drawable/ic_background_splash_screen</item>
-        <!--this property is used for hiding StatusBar-->
         <item name="android:windowFullscreen">true</item>
     </style>
-
 </resources>

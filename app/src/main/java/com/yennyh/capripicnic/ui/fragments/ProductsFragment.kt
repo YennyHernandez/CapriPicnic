@@ -15,11 +15,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.FragmentProductsBinding
-import com.yennyh.capripicnic.shared.lists.TypeProductsRVAdapter
 import com.yennyh.capripicnic.models.Product
+import com.yennyh.capripicnic.shared.lists_adapters.ProductVIewRVAdapter
 
-class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
-    private lateinit var contentRVAdapter: TypeProductsRVAdapter
+class ProductsFragment : Fragment(), ProductVIewRVAdapter.OnItemClickListener {
+    private lateinit var contentRVAdapter: ProductVIewRVAdapter
     private lateinit var binding: FragmentProductsBinding
 
     var listProducts: MutableList<Product> =
@@ -37,7 +37,7 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
         binding.ProductsRecyclerView.layoutManager =
             LinearLayoutManager(context, VERTICAL, false)
         binding.ProductsRecyclerView.setHasFixedSize(true)
-        contentRVAdapter = TypeProductsRVAdapter(
+        contentRVAdapter = ProductVIewRVAdapter(
             listProducts as ArrayList<Product>,
             this@ProductsFragment
         )
@@ -71,9 +71,9 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
         myProductsRef.addValueEventListener(postListener)  //agrega la información cargada
     }
 
-    override fun onItemClick(products: Product) {  //obtiene la información de lo que se presiono
+    override fun onItemClick(product: Product) {  //obtiene la información de lo que se presiono
         val action =
-            ProductsFragmentDirections.actionProductsFragmentToDetalleProductsFragment(products)
+            ProductsFragmentDirections.actionProductsFragmentToDetailsProductFragment(product)
         findNavController().navigate(action)
 
     }
