@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.ui.details_reciclyviews
+package com.yennyh.capripicnic.shared.details_reciclyviews
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,7 +27,7 @@ class DetalleFragment : Fragment() {
 
         val args: DetalleFragmentArgs by navArgs()
         val themeDetalle = args.themesSeleccionado
-        Picasso.get().load(themeDetalle.photos).into(binding.detalleReserveImageView)
+        Picasso.get().load(themeDetalle.photos[0].url).into(binding.detalleReserveImageView)
         binding.nombreTextView.text = themeDetalle.description
         binding.nameTextView.text = themeDetalle.name
 

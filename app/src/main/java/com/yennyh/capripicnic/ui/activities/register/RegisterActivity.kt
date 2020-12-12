@@ -76,16 +76,19 @@ class RegisterActivity : AuthService() {
 
             if (isValidName && isValidEmail && isValidPassword && isValidPasswordVerified && isAcceptTerms) {
                 val user = User(
-                    name,
-                    "",
-                    "",
-                    0,
+                    null,
+                    null,
+                    null,
                     email,
-                    password,
-                    null,
                     null,
                     "",
-                    "SUBSCRIBER"
+                    name,
+                    password,
+                    phone.toLong(),
+                    null,
+                    "SUBSCRIBER",
+                    null,
+                    false
                 )
                 newUser(user)
             } else {

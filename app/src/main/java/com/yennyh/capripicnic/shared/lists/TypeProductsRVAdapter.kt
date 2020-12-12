@@ -1,4 +1,4 @@
-package com.yennyh.capripicnic.lists
+package com.yennyh.capripicnic.shared.lists
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,56 +6,57 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.databinding.ListServicesItemBinding
-import com.yennyh.capripicnic.models.ThematicsPicnics
+import com.yennyh.capripicnic.databinding.ListProductItemBinding
+import com.yennyh.capripicnic.models.Product
 
 
-class ThematicsRVAdapter(
-    var thematicsList: ArrayList<ThematicsPicnics>,
-    val onItemClickListener: OnItemClickListener
+
+class TypeProductsRVAdapter(
+    var productsList: ArrayList<Product>,
+    private val onItemClickListener: OnItemClickListener
 ) :
-    RecyclerView.Adapter<ThematicsRVAdapter.ListThematicsViewHolder>() {
+    RecyclerView.Adapter<TypeProductsRVAdapter.ListProductsViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ListThematicsViewHolder {//inflar item
+    ): ListProductsViewHolder {//inflar item
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.list_services_item, parent, false)
-        return ListThematicsViewHolder(itemView, onItemClickListener)
+        return ListProductsViewHolder(itemView, onItemClickListener)
     }
 
     override fun onBindViewHolder(
-        holder: ListThematicsViewHolder,
+        holder: ListProductsViewHolder,
         position: Int
     ) {  //datos que voy a mostrar de la lista dependiendo de la posicion
-        val service = thematicsList[position]
+        val service = productsList[position]
         holder.bindThematic(service)
 
     }
 
     override fun getItemCount(): Int { //retorna el tamaño de la lista n veces
-        return thematicsList.size
+        return productsList.size
     }
 
 
-    class ListThematicsViewHolder(
+    class ListProductsViewHolder(
         itemView: View, var onItemClickListener: OnItemClickListener
     ) :
         RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
-        private val binding = ListServicesItemBinding.bind(itemView)
+        private val binding = ListProductItemBinding.bind(itemView)
 
-        fun bindThematic(thematic: ThematicsPicnics) {
-            Picasso.get().load(thematic.photos).into(binding.reservaImageView)
-            binding.titleTextView.text = thematic.description
+        fun bindThematic(product: Product) {
+            Picasso.get().load(product.photos[0].url).into(binding.productslistImageView)
+            binding.titleTextView.text = product.description
             binding.itemCardView.setOnClickListener {
-                onItemClickListener.onItemClick(thematic)
+                onItemClickListener.onItemClick(product)
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(thematic: ThematicsPicnics)
+        fun onItemClick(products: Product)
     }
 
 }

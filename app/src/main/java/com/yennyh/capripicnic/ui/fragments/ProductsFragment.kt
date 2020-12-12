@@ -15,14 +15,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.FragmentProductsBinding
-import com.yennyh.capripicnic.lists.TypeProductsRVAdapter
-import com.yennyh.capripicnic.models.TypeProducts
+import com.yennyh.capripicnic.shared.lists.TypeProductsRVAdapter
+import com.yennyh.capripicnic.models.Product
 
 class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
     private lateinit var contentRVAdapter: TypeProductsRVAdapter
     private lateinit var binding: FragmentProductsBinding
 
-    var listProducts: MutableList<TypeProducts> =
+    var listProducts: MutableList<Product> =
         mutableListOf()   //usado para bases de datos con firebaserealtime
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
             LinearLayoutManager(context, VERTICAL, false)
         binding.ProductsRecyclerView.setHasFixedSize(true)
         contentRVAdapter = TypeProductsRVAdapter(
-            listProducts as ArrayList<TypeProducts>,
+            listProducts as ArrayList<Product>,
             this@ProductsFragment
         )
         binding.ProductsRecyclerView.adapter =
@@ -58,7 +58,7 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
                 override fun onDataChange(snapshot: DataSnapshot) {  //snaps es la data
                     for (data: DataSnapshot in snapshot.children) { // recorrera todos los hijos (items de tabla)
                         val productsServer =
-                            data.getValue(TypeProducts::class.java)  //lo guarda en una variable
+                            data.getValue(Product::class.java)  //lo guarda en una variable
                         productsServer?.let { listProducts.add(it) } //lo agrega a la lista
                     }
                     contentRVAdapter.notifyDataSetChanged()
@@ -71,7 +71,7 @@ class ProductsFragment : Fragment(), TypeProductsRVAdapter.OnItemClickListener {
         myProductsRef.addValueEventListener(postListener)  //agrega la información cargada
     }
 
-    override fun onItemClick(products: TypeProducts) {  //obtiene la información de lo que se presiono
+    override fun onItemClick(products: Product) {  //obtiene la información de lo que se presiono
         val action =
             ProductsFragmentDirections.actionProductsFragmentToDetalleProductsFragment(products)
         findNavController().navigate(action)

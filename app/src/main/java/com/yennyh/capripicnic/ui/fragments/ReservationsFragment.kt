@@ -13,14 +13,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.FragmentReservationsBinding
-import com.yennyh.capripicnic.lists.ThematicsRVAdapter
-import com.yennyh.capripicnic.models.ThematicsPicnics
+import com.yennyh.capripicnic.shared.lists.ThematicsRVAdapter
+import com.yennyh.capripicnic.models.PicnicView
 
 class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener {
     private lateinit var contentRVAdapter: ThematicsRVAdapter
     private lateinit var binding: FragmentReservationsBinding
 
-    var listThematics: MutableList<ThematicsPicnics> =
+    var listThematics: MutableList<PicnicView> =
         mutableListOf()   //usado para bases de datos con firebaserealtime
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +34,7 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
             LinearLayoutManager(context, VERTICAL, false)
         binding.ReservationsRecyclerView.setHasFixedSize(true)
         contentRVAdapter = ThematicsRVAdapter(
-            listThematics as ArrayList<ThematicsPicnics>,
+            listThematics as ArrayList<PicnicView>,
             this@ReservationsFragment
         )
         binding.ReservationsRecyclerView.adapter =
@@ -51,7 +51,7 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
                 override fun onDataChange(snapshot: DataSnapshot) {  //snaps es la data
                     for (data: DataSnapshot in snapshot.children) { // recorrera todos los hijos (items de tabla)
                         val thematicsServer =
-                            data.getValue(ThematicsPicnics::class.java)  //lo guarda en una variable
+                            data.getValue(PicnicView::class.java)  //lo guarda en una variable
                         thematicsServer?.let { listThematics.add(it) } //lo agrega a la lista
                     }
                     contentRVAdapter.notifyDataSetChanged()
@@ -62,7 +62,7 @@ class ReservationsFragment : Fragment(), ThematicsRVAdapter.OnItemClickListener 
         myThematicsRef.addValueEventListener(postListener)  //agrega la información cargada
     }
 
-    override fun onItemClick(thematic: ThematicsPicnics) {  //obtiene la información de lo que se presiono
+    override fun onItemClick(thematic: PicnicView) {  //obtiene la información de lo que se presiono
         val action =
             ReservationsFragmentDirections.actionReservationsFragmentToDetalleFragment(thematic)
         findNavController().navigate(action)

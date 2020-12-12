@@ -14,7 +14,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.models.User
-import com.yennyh.capripicnic.models.UserResponse
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import com.yennyh.capripicnic.ui.activities.main.MainActivity
 
@@ -24,57 +23,46 @@ enum class Providers {
     GOOGLE
 }
 
-open class AuthService : AppCompatActivity(){
+open class AuthService : AppCompatActivity() {
     private val googleSignInID = 100
     lateinit var auth: FirebaseAuth
 
     fun newUser(user: User) {
-        auth.createUserWithEmailAndPassword(user.email, user.password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    mailVerify()
-                    val currentUser = getCurrentUser()
+        user.password?.let {
+            auth.createUserWithEmailAndPassword(user.email, it)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        mailVerify()
+                        val currentUser = getCurrentUser()
 
-                    val uid = currentUser!!.uid
-                    val usersReference =
-                        FirebaseDatabase.getInstance().getReference("users").child(uid)
+                        val uid = currentUser!!.uid
+                        val usersReference =
+                            FirebaseDatabase.getInstance().getReference("users").child(uid)
 
-                    val useRes = UserResponse(
-                        uid,
-                        user.name,
-                        user.lastName,
-                        user.documentType,
-                        user.documentNumber,
-                        user.email,
-                        user.phone,
-                        user.photo,
-                        null,
-                        null,
-                        false,
-                        user.role
-                    )
-                    uid.let {
-                        usersReference.setValue(useRes).addOnCompleteListener{ task ->
-                            if(task.isSuccessful) {
-                                Toast.makeText(
-                                    baseContext, "Register successful!.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                        user.uid = uid
+                        uid.let {
+                            usersReference.setValue(user).addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(
+                                        baseContext, "Register successful!.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
 
-                                goToLogin()
-                            }else{
-                                Toast.makeText(
-                                    baseContext, task.exception?.message,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                    goToLogin()
+                                } else {
+                                    Toast.makeText(
+                                        baseContext, task.exception?.message,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         }
-                    }
 
-                } else {
-                    Toast.makeText(baseContext, it.exception?.message, Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(baseContext, it.exception?.message, Toast.LENGTH_LONG).show()
+                    }
                 }
-            }
+        }
     }
 
     fun mailVerify() {
@@ -131,31 +119,32 @@ open class AuthService : AppCompatActivity(){
                 if (account != null) {
                     val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
-                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            val prefs = getSharedPreferences(
-                                getString(R.string.prefs_file),
-                                Context.MODE_PRIVATE
-                            ).edit()
-                            val putString = prefs.putString(
-                                "email",
-                                account.email ?: ""
-                            )
-                            prefs.putString("provider", "Google")
-                            prefs.apply()
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                val prefs = getSharedPreferences(
+                                    getString(R.string.prefs_file),
+                                    Context.MODE_PRIVATE
+                                ).edit()
+                                val putString = prefs.putString(
+                                    "email",
+                                    account.email ?: ""
+                                )
+                                prefs.putString("provider", "Google")
+                                prefs.apply()
 
-                            val main = Intent(this, MainActivity::class.java)
-                            startActivity(main)
-                            finish()
-                        }else{
-                            Toast.makeText(
-                                baseContext, it.exception?.message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                                val main = Intent(this, MainActivity::class.java)
+                                startActivity(main)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    baseContext, it.exception?.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    }
                 }
-            }catch (error: ApiException){
+            } catch (error: ApiException) {
                 Toast.makeText(
                     baseContext, error.message,
                     Toast.LENGTH_SHORT
@@ -191,7 +180,7 @@ open class AuthService : AppCompatActivity(){
         goToLogin()
     }
 
-    fun goToLogin(){
+    fun goToLogin() {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         val login = Intent(this, LoginActivity::class.java)
         startActivity(login)

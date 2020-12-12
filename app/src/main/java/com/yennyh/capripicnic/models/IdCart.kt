@@ -1,5 +1,5 @@
 package com.yennyh.capripicnic.models
 
-data class IdMenu(
+data class IdCart(
     val id: String = ""
 )

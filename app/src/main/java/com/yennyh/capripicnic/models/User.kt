@@ -1,32 +1,17 @@
 package com.yennyh.capripicnic.models
 
-import java.io.Serializable
-
-data class UserResponse(
-    val uid: String,
-    val name: String,
-    val lastName: String,
-    val documentType: String,
-    val documentNumber: Int,
-    val email: String,
-    val phone: Long?,
-    val photo: String?,
-    val address: String?,
-    val carts: List<Cart>?,
-    val verified: Boolean,
-    val role: String
-): Serializable
-
 data class User(
-    val name: String,
-    val lastName: String,
-    val documentType: String,
-    val documentNumber: Int,
-    val email: String,
-    val password: String,
-    val phone: Long?,
-    val photo: String?,
-    val address: String?,
-    val role: String
-): Serializable
-
+    val address: String? = "",
+    val documentNumber: Int? = 0,
+    val documentType: String? ="",
+    val email: String ="",
+    val idCarts: List<IdCart>? = arrayListOf(),
+    val lastName: String = "",
+    val name: String = "",
+    val password: String? = "",
+    val phone: Long = 0,
+    val photoUrl: String? = "",
+    val role: String = "SUBSCRIBER",
+    var uid: String? = "",
+    val verified: Boolean = false
+)

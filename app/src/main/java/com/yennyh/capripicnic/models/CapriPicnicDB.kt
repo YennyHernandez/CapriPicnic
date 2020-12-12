@@ -1,10 +1,10 @@
 package com.yennyh.capripicnic.models
 
 data class CapriPicnicDB(
-    val invoices: List<Invoice>,
-    val menus: List<Menu>,
-    val picnicView: List<PicnicView>,
-    val products: List<Product>,
-    val unit: List<Unit>,
-    val users: List<User>
+    val invoices: List<Invoice> = arrayListOf(),
+    val menus: List<Menu> = arrayListOf(),
+    val picnicView: List<PicnicView> = arrayListOf(),
+    val products: List<Product> = arrayListOf(),
+    val unit: List<Unit> = arrayListOf(),
+    val users: List<User> = arrayListOf()
 )
