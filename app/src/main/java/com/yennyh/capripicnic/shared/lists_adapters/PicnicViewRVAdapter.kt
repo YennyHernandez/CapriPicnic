@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.databinding.ListPicnicItemBinding
+import com.yennyh.capripicnic.databinding.ListPicnicViewItemBinding
 import com.yennyh.capripicnic.models.PicnicView
 
 
@@ -21,7 +21,8 @@ class PicnicViewRVAdapter(
         viewType: Int
     ): ListPicnicViewHolder {//inflar item
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_picnic_item, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_picnic_view_item, parent, false)
         return ListPicnicViewHolder(itemView, onItemClickListener)
     }
 
@@ -43,11 +44,11 @@ class PicnicViewRVAdapter(
         itemView: View, var onItemClickListener: OnItemClickListener
     ) :
         RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
-        private val binding = ListPicnicItemBinding.bind(itemView)
+        private val binding = ListPicnicViewItemBinding.bind(itemView)
 
         fun bindThematic(picnicView: PicnicView) {
             Picasso.get().load(picnicView.photos[0].url).into(binding.picnicImageView)
-            binding.titlePicnicTextView.text = picnicView.description
+            binding.titlePicnicTextView.text = picnicView.name
             binding.picnicCardView.setOnClickListener {
                 onItemClickListener.onItemClick(picnicView)
             }

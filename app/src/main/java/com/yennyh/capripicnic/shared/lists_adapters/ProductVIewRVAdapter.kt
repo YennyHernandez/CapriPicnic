@@ -49,7 +49,7 @@ class ProductVIewRVAdapter(
         fun bindThematic(productView: Product) {
             Picasso.get().load(productView.photos[0].url).into(binding.productListImageView)
 
-            binding.titleProductTextView.text = productView.description
+            binding.titleProductTextView.text = productView.name
             binding.productCardView.setOnClickListener {
                 onItemClickListener.onItemClick(productView)
             }
