@@ -33,17 +33,8 @@
         android:label="@string/reservations"
         tools:layout="@layout/fragment_reservations">
         <action
-            android:id="@+id/action_reservationsFragment_to_picnicViewDetailsFragment"
-            app:destination="@id/picnicViewDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/picnicViewDetailsFragment"
-        android:name="com.yennyh.capripicnic.shared.details_recyclerview.PicnicViewDetailsFragment"
-        android:label="@string/reservations"
-        tools:layout="@layout/fragment_picnic_view_details">
-        <argument
-            android:name="picnicViewSelected"
-            app:argType="com.yennyh.capripicnic.models.PicnicView" />
+            android:id="@+id/action_reservationsFragment_to_detailsProductViewFragment"
+            app:destination="@id/PicnicViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
@@ -52,16 +43,25 @@
         tools:layout="@layout/fragment_products">
         <action
             android:id="@+id/action_productsFragment_to_detailsProductFragment"
-            app:destination="@id/detailsProductViewFragment" />
+            app:destination="@id/ProductViewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailsProductViewFragment"
+        android:id="@+id/ProductViewFragment"
         android:name="com.yennyh.capripicnic.shared.details_recyclerview.ProductViewDetailsFragment"
         android:label="@string/products"
-        tools:layout="@layout/fragment_product_view_details">
+        tools:layout="@layout/fragment_recycler_view_details">
         <argument
             android:name="productSelect"
             app:argType="com.yennyh.capripicnic.models.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/PicnicViewFragment"
+        android:name="com.yennyh.capripicnic.shared.details_recyclerview.PicnicViewDetailsFragment"
+        android:label="@string/reservations"
+        tools:layout="@layout/fragment_recycler_view_details">
+        <argument
+            android:name="picnicSelect"
+            app:argType="com.yennyh.capripicnic.models.PicnicView" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"

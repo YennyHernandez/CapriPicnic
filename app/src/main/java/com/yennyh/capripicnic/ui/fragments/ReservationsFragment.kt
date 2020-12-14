@@ -65,9 +65,7 @@ class ReservationsFragment : Fragment(), PicnicViewRVAdapter.OnItemClickListener
 
     override fun onItemClick(picnicView: PicnicView) {  //obtiene la información de lo que se presiono
         val action =
-            ReservationsFragmentDirections.actionReservationsFragmentToPicnicViewDetailsFragment(
-                picnicView
-            )
+            ReservationsFragmentDirections.actionReservationsFragmentToDetailsProductViewFragment(picnicView)
         findNavController().navigate(action)
     }
 
