@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_card_view"
-        android:layout_width="376dp"
-        android:layout_height="513dp"
-        app:cardCornerRadius="8dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/colorPrimary"
+        app:cardCornerRadius="25dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,56 +21,66 @@
 
             <ImageView
                 android:id="@+id/picnic_details_image_view"
-                android:layout_width="357dp"
-                android:layout_height="309dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/nombre_text_view"
-                android:layout_width="339dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
                 android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@+id/cotizar_button"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/name_text_view" />
+                app:layout_constraintTop_toBottomOf="@+id/quote_button" />
 
             <TextView
                 android:id="@+id/name_text_view"
-                android:layout_width="186dp"
-                android:layout_height="67dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="36dp"
-                android:text="TextView"
+                android:layout_width="0dp"
+                android:textAlignment="center"
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/title_picnicview"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/nombre_text_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/picnic_details_image_view" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/cotizar_button"
-                android:layout_width="135dp"
-                android:layout_height="73dp"
-                android:layout_marginTop="24dp"
+                android:id="@+id/quote_button"
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.4"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="center_horizontal"
                 android:padding="20dp"
-                android:text="@string/cotizar"
+                android:text="@string/quote"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
                 app:backgroundTint="@color/colorAccent"
                 app:cornerRadius="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toEndOf="@+id/name_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/picnic_details_image_view" />
         </androidx.constraintlayout.widget.ConstraintLayout>

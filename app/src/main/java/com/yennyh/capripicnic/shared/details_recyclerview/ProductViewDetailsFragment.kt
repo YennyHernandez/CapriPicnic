@@ -29,7 +29,7 @@ class ProductViewDetailsFragment : Fragment() {
         val productDetails = args.productSelect
 
         Picasso.get().load(productDetails.photos[0].url).into(binding.productListImageView)
-        binding.descriptionProdutTextView.text = productDetails.description
+        binding.descriptionProductTextView.text = productDetails.description
         binding.titleProductTextView.text = productDetails.name
 
     }
