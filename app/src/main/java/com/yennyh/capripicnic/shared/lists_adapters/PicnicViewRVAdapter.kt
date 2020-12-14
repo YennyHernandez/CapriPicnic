@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.ListPicnicViewItemBinding
-import com.yennyh.capripicnic.databinding.ListProductViewItemBinding
 import com.yennyh.capripicnic.models.PicnicView
 
 
@@ -49,7 +48,7 @@ class PicnicViewRVAdapter(
 
         fun bindThematic(picnicView: PicnicView) {
             Picasso.get().load(picnicView.photos[0].url).into(binding.picnicImageView)
-            binding.titlePicnicTextView.text = picnicView.description
+            binding.titlePicnicTextView.text = picnicView.name
             binding.picnicCardView.setOnClickListener {
                 onItemClickListener.onItemClick(picnicView)
             }
@@ -59,4 +58,5 @@ class PicnicViewRVAdapter(
     interface OnItemClickListener {
         fun onItemClick(thematic: PicnicView)
     }
+
 }

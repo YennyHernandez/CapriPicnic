@@ -30,19 +30,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageView
             android:id="@+id/picnic_imageView"
-            android:layout_width="129dp"
-            android:layout_height="112dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="8dp"
+            android:maxHeight="100dp"
             android:orientation="horizontal"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/titlePicnic_textView"
-            app:layout_constraintHorizontal_bias="0.415"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.417"
+            app:layout_constraintVertical_bias="0.6"
             tools:ignore="ContentDescription"
             tools:srcCompat="@tools:sample/avatars" />
 

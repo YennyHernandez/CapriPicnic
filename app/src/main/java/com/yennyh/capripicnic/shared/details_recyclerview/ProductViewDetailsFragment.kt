@@ -28,9 +28,9 @@ class ProductViewDetailsFragment : Fragment() {
         val args: ProductViewDetailsFragmentArgs by navArgs()
         val productDetails = args.productSelect
 
-        Picasso.get().load(productDetails.photos[0].url).into(binding.productDetailsImageView)
-        binding.nombreTextView.text = productDetails.description
-        binding.nameTextView.text = productDetails.name
+        Picasso.get().load(productDetails.photos[0].url).into(binding.productListImageView)
+        binding.descriptionProdutTextView.text = productDetails.description
+        binding.titleProductTextView.text = productDetails.name
 
     }
 
