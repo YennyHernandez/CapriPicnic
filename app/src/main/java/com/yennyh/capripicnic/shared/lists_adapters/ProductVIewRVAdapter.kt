@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.databinding.ListProductViewItemBinding
+import com.yennyh.capripicnic.databinding.ListProductsViewItemBinding
 import com.yennyh.capripicnic.models.Product
 
 
@@ -22,7 +22,7 @@ class ProductVIewRVAdapter(
     ): ListProductsViewHolder {//inflar item
         val itemView =
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_product_view_item, parent, false)
+                .inflate(R.layout.list_products_view_item, parent, false)
         return ListProductsViewHolder(itemView, onItemClickListener)
     }
 
@@ -44,13 +44,13 @@ class ProductVIewRVAdapter(
         itemView: View, var onItemClickListener: OnItemClickListener
     ) :
         RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
-        private val binding = ListProductViewItemBinding.bind(itemView)
+        private val binding = ListProductsViewItemBinding.bind(itemView)
 
         fun bindThematic(productView: Product) {
-            Picasso.get().load(productView.photos[0].url).into(binding.productListImageView)
+            Picasso.get().load(productView.photos[0].url).into(binding.listProductsImageView)
 
-            binding.titleProductTextView.text = productView.name
-            binding.productCardView.setOnClickListener {
+            binding.nameListProductsTextView.text = productView.name
+            binding.listProductsCardView.setOnClickListener {
                 onItemClickListener.onItemClick(productView)
             }
         }

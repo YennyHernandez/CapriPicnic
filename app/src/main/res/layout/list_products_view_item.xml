@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
+    android:textAlignment="center"
     android:layout_gravity="center"
     android:layout_marginTop="20dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/picnic_card_view"
+        android:id="@+id/list_products_card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorPrimary"
+        android:textAlignment="center"
         app:cardCornerRadius="25dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,21 +23,21 @@
 
 
             <TextView
-                android:id="@+id/titlePicnic_textView"
+                android:id="@+id/name_list_products_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/textView"
+                android:text="@string/name"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/picnic_imageView"
+                app:layout_constraintStart_toEndOf="@+id/list_products_imageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.5" />
 
             <ImageView
-                android:id="@+id/picnic_imageView"
+                android:id="@+id/list_products_imageView"
                 android:layout_width="0dp"
                 android:layout_height="170dp"
                 android:scaleType="fitXY"
