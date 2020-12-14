@@ -1,17 +1,19 @@
 package com.yennyh.capripicnic.models
 
 data class User(
-    val address: String? = "",
-    val documentNumber: Int? = 0,
-    val documentType: String? ="",
-    val email: String ="",
-    val idCarts: List<IdCart>? = arrayListOf(),
-    val lastName: String = "",
-    val name: String = "",
-    val password: String? = "",
-    val phone: Long = 0,
-    val photoUrl: String? = "",
+    var address: String? = null,
+    var displayName: String? = null,
+    var documentNumber: Long? = 0,
+    var documentType: String? = null,
+    var email: String ="",
+    var idCarts: List<IdCart>? = arrayListOf(),
+    var lastName: String = "",
+    var name: String = "",
+    var password: String? = null,
+    var phone: Long = 0,
+    var photoUrl: String? = null,
+    var provider: String? = "BASIC",
     val role: String = "SUBSCRIBER",
-    var uid: String? = "",
-    val verified: Boolean = false
+    var uid: String? = null,
+    var verified: Boolean = false
 )

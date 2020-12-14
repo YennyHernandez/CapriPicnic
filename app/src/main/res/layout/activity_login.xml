@@ -2,11 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".ui.activities.login.LoginActivity"
-    android:id="@+id/authLayout">
+    tools:context=".ui.activities.login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:layout_marginTop="16dp">
 
         <!-- Icon-->
         <ImageView
@@ -31,15 +32,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:background="@android:color/white"
-            android:hint="@string/Correo"
-            android:textColorHint="@android:color/darker_gray">
+            android:hint="@string/email"
+            android:textColorHint="@android:color/darker_gray"
+            app:boxBackgroundColor="@android:color/white"
+            app:hintTextColor="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:drawablePadding="10dp"
                 android:inputType="textEmailAddress" />
@@ -52,12 +53,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:hint="@string/Contraseña"
             android:textColorHint="@android:color/darker_gray"
+            app:boxBackgroundColor="@android:color/white"
             app:counterEnabled="true"
             app:counterMaxLength="8"
-            app:counterTextColor="@color/colorAccent"
+            app:counterOverflowTextColor="@android:color/holo_green_light"
+            app:counterTextColor="@android:color/white"
+            app:hintTextColor="@color/colorAccent"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorAccent">
 
@@ -65,7 +68,6 @@
                 android:id="@+id/password_editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
                 android:drawableStart="@drawable/ic_baseline_vpn_key_24"
                 android:drawablePadding="10dp"
                 android:inputType="textPassword"
@@ -108,9 +110,10 @@
             android:text="@string/sign_in_withGoogle"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:textSize="21sp"
+            android:textSize="16sp"
             app:backgroundTint="@android:color/holo_green_light"
-            app:cornerRadius="30dp" />
+            app:cornerRadius="30dp"
+            app:icon="@drawable/googleg_disabled_color_18" />
         <!-- Sign up -->
         <TextView
             android:id="@+id/singUp_textView"

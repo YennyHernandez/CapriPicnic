@@ -2,12 +2,12 @@
     <string name="prefs_file">com.com.yennyh.capripicnic.PREFERENCES_FILE_KEY</string>
     <string name="app_name" translatable="false">CapriPicnic</string>
     <string name="logo">logo</string>
-    <string name="Correo">Correo</string>
+    <string name="email">Correo</string>
     <string name="Contraseña">Contraseña</string>
     <string name="Forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="sign_in">Iniciar sesión</string>
     <string name="new_user_sign_up">¿Nuevo usuario? REGISTRARSE</string>
-    <string name="Nombre">Nombre</string>
+    <string name="name">Nombre</string>
     <string name="enter_password_again">Ingrese la contraseña de nuevo</string>
     <string name="do_you_accept_the_terms">Acepta los terminos?</string>
     <string name="register">Registrarse</string>
@@ -54,4 +54,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in_withGoogle">Iniciar sesión con Google</string>
     <string name="cotizar">Cotizar</string>
+    <string name="lastName">Apellido</string>
+    <string name="document_type">Tipo de documento</string>
+    <string name="number">Número</string>
+    <string name="address">Dirrección</string>
+    <string name="sample_text">Sample text</string>
+    <string-array name="document_type_options_list">
+        <item>CC</item>
+        <item>CE</item>
+        <item>TI</item>
+        <item>PS</item>
+        <item>OTRO</item>
+    </string-array>
 </resources>

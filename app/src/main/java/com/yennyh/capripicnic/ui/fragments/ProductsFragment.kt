@@ -57,9 +57,9 @@ class ProductsFragment : Fragment(), ProductVIewRVAdapter.OnItemClickListener {
             object : ValueEventListener {  //hace un llamado y devuelve la información que contiene
                 override fun onDataChange(snapshot: DataSnapshot) {  //snaps es la data
                     for (data: DataSnapshot in snapshot.children) { // recorrera todos los hijos (items de tabla)
-                        val productsServer =
+                        val products =
                             data.getValue(Product::class.java)  //lo guarda en una variable
-                        productsServer?.let { listProducts.add(it) } //lo agrega a la lista
+                        products?.let { listProducts.add(it) } //lo agrega a la lista
                     }
                     contentRVAdapter.notifyDataSetChanged()
                 }

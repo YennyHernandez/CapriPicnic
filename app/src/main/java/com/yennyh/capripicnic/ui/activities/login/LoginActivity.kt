@@ -7,8 +7,10 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -54,18 +56,20 @@ class LoginActivity : AuthService() {
     }
 
     private fun session() {
+
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
         val email = prefs.getString("email", null)
         val provider = prefs.getString("provider", null)
 
         if (email != null && provider != null) {
-            authLayout.visibility = View.INVISIBLE
-            sendMainActivity()
+            if(userExist()){
+                authLayout.visibility = View.INVISIBLE
+                sendMainActivity()
+            }
         }
     }
 
     private fun setup() {
-        auth = FirebaseAuth.getInstance()
         email_editText.addTextChangedListener(textWatcher)
         password_editText.addTextChangedListener(textWatcher)
 
