@@ -61,6 +61,8 @@
     <string name="sample_text">Sample text</string>
     <string name="details_title">Title</string>
     <string name="description_textView">Description</string>
+    <string name="email_verification_resend">Reenviar correo de verificación</string>
+    <string name="login_back">Regreasar al login</string>
     <string-array name="document_type_options_list">
         <item>CC</item>
         <item>CE</item>

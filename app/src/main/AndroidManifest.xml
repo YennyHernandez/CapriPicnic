@@ -33,6 +33,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activities.passwordrecovery.PasswordRecoveryActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
             android:name=".ui.activities.register.RegisterActivity"
             android:theme="@style/NoActionBar" />
         <activity

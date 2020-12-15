@@ -84,6 +84,17 @@
             android:text="@string/Forgot_password"
             android:textColor="@android:color/white" />
 
+        <!-- Forgot password -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/resendEmailVerification_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:text="@string/email_verification_resend"
+            android:textColor="@android:color/white"
+            android:visibility="gone"/>
+
         <!-- Sign in mail-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signIn_button"

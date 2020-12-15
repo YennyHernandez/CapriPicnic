@@ -7,14 +7,11 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnFocusChangeListener
-import android.view.inputmethod.InputMethodManager
+import android.view.View.*
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.auth.FirebaseAuth
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.services.AuthService
 import com.yennyh.capripicnic.ui.activities.main.MainActivity
@@ -56,20 +53,21 @@ class LoginActivity : AuthService() {
     }
 
     private fun session() {
-
         val prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
-        val email = prefs.getString("email", null)
-        val provider = prefs.getString("provider", null)
-
-        if (email != null && provider != null) {
-            if(userExist()){
-                authLayout.visibility = View.INVISIBLE
-                sendMainActivity()
+        if (prefs != null) {
+            val email = prefs.getString("email", null)
+            val provider = prefs.getString("provider", null)
+            if (email != null && provider != null) {
+                if (userExist()) {
+                    authLayout.visibility = View.GONE
+                    sendMainActivity()
+                }
             }
         }
     }
 
     private fun setup() {
+
         email_editText.addTextChangedListener(textWatcher)
         password_editText.addTextChangedListener(textWatcher)
 
@@ -78,7 +76,24 @@ class LoginActivity : AuthService() {
             startActivity(passwordRecovery)
         }
 
+        resendEmailVerification_textView.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setMessage("Desea volver al enviar el correo de verificación?")
+                .setNegativeButton("Cancelar", null)
+                .setPositiveButton("Aceptar") { _, _ ->
+                    mailVerify()
+                }
+                .show()
+        }
+
+
         signIn_button.setOnClickListener {
+            if (showResendEmailVerification) {
+                resendEmailVerification_textView.visibility = View.VISIBLE
+            } else {
+                resendEmailVerification_textView.visibility = View.GONE
+            }
+
             email = email_editText.text.toString()
             isValidEmail = onValidEmail(email)
             password = password_editText.text.toString()

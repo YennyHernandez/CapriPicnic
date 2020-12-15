@@ -4,29 +4,30 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.getValue
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.models.Product
 import com.yennyh.capripicnic.models.User
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import com.yennyh.capripicnic.ui.activities.main.MainActivity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import com.yennyh.capripicnic.ui.fragments.ProductsFragmentDirections
+import kotlinx.android.synthetic.main.activity_password_recovery.*
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
 
 
 open class AuthService : AppCompatActivity() {
     private val googleSignInID = 100
+    var showResendEmailVerification  = false
 
     fun newUser(newUser: User) {
         newUser.password?.let { password ->
@@ -67,7 +68,7 @@ open class AuthService : AppCompatActivity() {
         }
     }
 
-    private fun mailVerify() {
+    fun mailVerify() {
         val user = getCurrentUser()
         user.sendEmailVerification().addOnCompleteListener {
             if (it.isSuccessful) {
@@ -115,6 +116,7 @@ open class AuthService : AppCompatActivity() {
                         }
                         userReference.addValueEventListener(postListener)
 
+                        showResendEmailVerification = false
                         val main = Intent(this, MainActivity::class.java)
                         startActivity(main)
                     } else {
@@ -123,6 +125,7 @@ open class AuthService : AppCompatActivity() {
                             "Por favor verifique la cuenta en su correo!",
                             Toast.LENGTH_LONG
                         ).show()
+                        showResendEmailVerification = true
                     }
 
                 } else {
@@ -198,6 +201,48 @@ open class AuthService : AppCompatActivity() {
 
     }
 
+    fun getUser(uidUser: String): User?{ //TODO: Problema de sincronismo
+        var user : User? = null
+        val userReference = FirebaseDatabase.getInstance().getReference("users").child(uidUser)
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                user = dataSnapshot.getValue(User::class.java)!!
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Toast.makeText(
+                    baseContext,
+                    databaseError.toException().message,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+        userReference.addValueEventListener(postListener)
+        return if(user != null){
+            user
+        }else{
+            null
+        }
+
+    }
+
+
+    fun forgotPassword(email: String) {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(
+                    baseContext, "Por favor revise $email para resetear la contraseña!",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                Toast.makeText(
+                    baseContext, it.exception?.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     fun changePassword(currentPassword: String, newPassword: String) {
         FirebaseAuth.getInstance().confirmPasswordReset(currentPassword, newPassword)
     }
@@ -213,18 +258,19 @@ open class AuthService : AppCompatActivity() {
     }
 
 
-    fun userExist(): Boolean{
+    fun userExist(): Boolean {
         var exist = true //TODO: Inicializar en false
         val userReference =
             getCurrentUser().let {
                 FirebaseDatabase.getInstance().getReference("users").child(it.uid)
             }
         GlobalScope.launch {
-            val postListener = object : ValueEventListener{
+            val postListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val user = dataSnapshot.getValue(User::class.java)
                     if (user != null) {
-                        exist = true //TODO: No está alcanzando a cambiar el valor, buscar análogo a async await
+                        exist =
+                            true //TODO: No está alcanzando a cambiar el valor, buscar análogo a async await
                     }
                 }
 
@@ -249,13 +295,13 @@ open class AuthService : AppCompatActivity() {
         ).edit()
         val putString = prefs.putString(
             "email",
-            email ?: ""
+            email
         )
         prefs.putString("provider", provider)
         prefs.apply()
     }
 
-    fun clearPrefs(){
+    fun clearPrefs() {
         val prefs =
             getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
         prefs.clear()

@@ -1,5 +1,6 @@
 package com.yennyh.capripicnic.ui.activities.passwordrecovery
-
+import android.content.Intent
+import com.yennyh.capripicnic.services.AuthService
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,9 +8,10 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.ui.activities.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_password_recovery.*
 
-class PasswordRecoveryActivity : AppCompatActivity() {
+class PasswordRecoveryActivity : AuthService(){
 
     private var email: String = ""
     private var isValidEmail: Boolean = false
@@ -30,13 +32,12 @@ class PasswordRecoveryActivity : AppCompatActivity() {
             email = this.emailRecovery_editText.text.toString()
 
             if (onValidEmail(email)) {
-                MaterialAlertDialogBuilder(this)
-                    .setMessage("Check $email, to recovery your account")
-                    .setPositiveButton("OK") { _, _ ->
-                        emailRecovery_editText.text = null
-                    }
-                    .show()
+                forgotPassword(email)
             }
+        }
+
+        back_login_button.setOnClickListener {
+           goToLogin()
         }
     }
 
