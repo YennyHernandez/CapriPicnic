@@ -73,7 +73,7 @@ class ProductsFragment : Fragment(), ProductVIewRVAdapter.OnItemClickListener {
 
     override fun onItemClick(product: Product) {  //obtiene la información de lo que se presiono
         val action =
-            ProductsFragmentDirections.actionProductsFragmentToDetailsProductFragment(product)
+            ProductsFragmentDirections.actionProductsFragmentToProductViewDetailsFragment(product)
         findNavController().navigate(action)
 
     }
