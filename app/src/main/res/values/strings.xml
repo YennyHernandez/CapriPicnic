@@ -61,6 +61,10 @@
     <string name="sample_text">Sample text</string>
     <string name="details_title">Title</string>
     <string name="description_textView">Description</string>
+    <string name="role">Rol</string>
+    <string name="password">Contraseña</string>
+    <string name="document_number">Numero de documento</string>
+    <string name="characteristics_of_my_order">Caracteristicas de mi orden</string>
     <string-array name="document_type_options_list">
         <item>CC</item>
         <item>CE</item>

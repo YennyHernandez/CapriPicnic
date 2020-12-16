@@ -6,5 +6,6 @@ data class CapriPicnicDB(
     val picnicView: List<PicnicView> = arrayListOf(),
     val products: List<Product> = arrayListOf(),
     val unit: List<Unit> = arrayListOf(),
-    val users: List<User> = arrayListOf()
+    val users: List<User> = arrayListOf(),
+    val carts: List<Cart>,
 )

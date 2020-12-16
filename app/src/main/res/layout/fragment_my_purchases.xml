@@ -6,17 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MyPurchasesFragment">
 
-    <TextView
-        android:id="@+id/my_purchase_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/my_purchases_description"
-        android:textAlignment="center"
-        android:textColor="#F44336"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_purchase_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="348dp"
+        tools:listitem="@layout/list_my_products_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
