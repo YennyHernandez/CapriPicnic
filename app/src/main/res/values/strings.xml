@@ -68,6 +68,18 @@
     <string name="onUpdate_accountView">Desea actualizar?</string>
     <string name="new_password">Nueva contraseña</string>
     <string name="current_password">Actual contraseña</string>
+    <string name="precio">Precio</string>
+    <string name="buy">Comprar</string>
+    <string name="detalle">Detalle:</string>
+    <string name="reservar">Reservar</string>
+    <string name="menu">Menú</string>
+    <string name="racdecordero">Rack de cordero</string>
+    <string name="hamburguesa">Hamburguesa de cordero</string>
+    <string name="lomo">Lomo de cerdo</string>
+    <string name="churrasco">Churrasco</string>
+    <string name="aderezos">Aderezos</string>
+    <string name="miel">Miel</string>
+    <string name="colagranualda">Kola granulada</string>
     <string-array name="document_type_options_list">
         <item>CC</item>
         <item>CE</item>
