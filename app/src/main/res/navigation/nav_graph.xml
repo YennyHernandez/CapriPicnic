@@ -7,10 +7,6 @@
 
     <!--Drawer and bottom navigation fragments-->
     <fragment
-        android:id="@+id/myQuotesFragment"
-        android:name="com.yennyh.capripicnic.ui.fragments.MyQuotesFragment"
-        android:label="@string/my_quotes" />
-    <fragment
         android:id="@+id/myReservationsFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.MyReservationsFragment"
         android:label="@string/my_reservations" />
@@ -77,6 +73,26 @@
         tools:layout="@layout/fragment_my_purchase_details">
         <argument
             android:name="myProductSelect"
+            app:argType="com.yennyh.capripicnic.models.Product"/>
+    </fragment>
+<!-- My Quotes -->
+
+    <fragment
+        android:id="@+id/myQuotesFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MyQuotesFragment"
+        android:label="fragment_my_quotes"
+        tools:layout="@layout/fragment_my_quotes" >
+        <action
+            android:id="@+id/action_myQuotesFragment_to_myQuoteDetailsFragment"
+            app:destination="@id/myQuoteDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myQuoteDetailsFragment"
+        android:name="com.yennyh.capripicnic.shared.details_recyclerview.MyQuoteDetailsFragment"
+        android:label="@string/my_quotes"
+        tools:layout="@layout/fragment_my_quote_details" >
+        <argument
+            android:name="myQuoteSelect"
             app:argType="com.yennyh.capripicnic.models.Product"/>
     </fragment>
 

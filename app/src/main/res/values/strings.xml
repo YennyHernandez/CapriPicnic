@@ -3,7 +3,7 @@
     <string name="app_name" translatable="false">CapriPicnic</string>
     <string name="logo">logo</string>
     <string name="email">Correo</string>
-    <string name="Contraseña">Contraseña</string>
+    <string name="password">Contraseña</string>
     <string name="Forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="sign_in">Iniciar sesión</string>
     <string name="new_user_sign_up">¿Nuevo usuario? REGISTRARSE</string>
@@ -62,9 +62,12 @@
     <string name="details_title">Title</string>
     <string name="description_textView">Description</string>
     <string name="role">Rol</string>
-    <string name="password">Contraseña</string>
     <string name="document_number">Numero de documento</string>
     <string name="characteristics_of_my_order">Caracteristicas de mi orden</string>
+    <string name="update">Actualizar</string>
+    <string name="onUpdate_accountView">Desea actualizar?</string>
+    <string name="new_password">Nueva contraseña</string>
+    <string name="current_password">Actual contraseña</string>
     <string-array name="document_type_options_list">
         <item>CC</item>
         <item>CE</item>

@@ -26,10 +26,10 @@ class MyPurchaseDetailsFragment : Fragment() {
 
         val args: MyPurchaseDetailsFragmentArgs by navArgs()
         val myPurchaseViewDetails = args.myProductSelect
-//        Picasso.get().load(picnicViewDetails.photos[0].url).into(binding.picnicViewImageView)
-//        binding.picnicViewDescriptionTextView.text = picnicViewDetails.description
+//        Picasso.get().load(myPurchaseViewDetails.photos[0].url).into(binding.myPurchaseViewDetails)
+//        binding.myPurchaseViewDetails.text = picnicViewDetails.description
 //        binding.picnicViewNameTextView.text = picnicViewDetails.name
-
+//
     }
 
 }

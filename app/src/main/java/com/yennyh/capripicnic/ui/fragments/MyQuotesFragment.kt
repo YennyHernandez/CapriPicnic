@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -14,17 +13,18 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.yennyh.capripicnic.R
-import com.yennyh.capripicnic.databinding.FragmentMyPurchasesBinding
+import com.yennyh.capripicnic.databinding.FragmentMyQuotesBinding
 import com.yennyh.capripicnic.models.*
 import com.yennyh.capripicnic.services.AuthService
-import com.yennyh.capripicnic.shared.lists_adapters.MyProductViewRVAdapter
+import com.yennyh.capripicnic.shared.lists_adapters.MyQuoteViewRVAdapter
+import androidx.navigation.fragment.findNavController
 
-class MyPurchasesFragment : Fragment(), MyProductViewRVAdapter.OnItemClickListener {
-    private lateinit var contentRVAdapter: MyProductViewRVAdapter
-    private lateinit var binding: FragmentMyPurchasesBinding
+class MyQuotesFragment : Fragment(), MyQuoteViewRVAdapter.OnItemClickListener {
+    private lateinit var contentRVAdapter: MyQuoteViewRVAdapter
+    private lateinit var binding: FragmentMyQuotesBinding
     private lateinit var authSvc: AuthService
 
-    var listMyProducts: MutableList<Product> =
+    var listMyQuotes: MutableList<Product> =
         mutableListOf()   //usado para bases de datos con firebaserealtime
 
     override fun onCreateView(
@@ -32,7 +32,7 @@ class MyPurchasesFragment : Fragment(), MyProductViewRVAdapter.OnItemClickListen
         savedInstanceState: Bundle?
     ): View? {// Inflate the layout for this fragment
         return inflater.inflate(
-            R.layout.fragment_my_purchases,
+            R.layout.fragment_my_quotes,
             container,
             false
         ) //purchase contiene picnics y productos comprados
@@ -40,22 +40,22 @@ class MyPurchasesFragment : Fragment(), MyProductViewRVAdapter.OnItemClickListen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         authSvc = AuthService()
-        binding = FragmentMyPurchasesBinding.bind(view)
-        binding.myPurchaseRecyclerView.layoutManager =
+        binding = FragmentMyQuotesBinding.bind(view)
+        binding.myQuotesRecyclerView.layoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        binding.myPurchaseRecyclerView.setHasFixedSize(true)
-        contentRVAdapter = MyProductViewRVAdapter(
-            listMyProducts as ArrayList<Product>,
-            this@MyPurchasesFragment
+        binding.myQuotesRecyclerView.setHasFixedSize(true)
+        contentRVAdapter = MyQuoteViewRVAdapter(
+            listMyQuotes as ArrayList<Product>,
+            this@MyQuotesFragment
         )
-        binding.myPurchaseRecyclerView.adapter =
+        binding.myQuotesRecyclerView.adapter =
             contentRVAdapter   // hay que cargarle la información
         loadFromFirebase()
         contentRVAdapter.notifyDataSetChanged()
     }
 
     private fun loadFromFirebase() {
-        listMyProducts.clear()
+        listMyQuotes.clear()
 
         val currentUserUid = authSvc.getCurrentUser().uid
         val database = FirebaseDatabase.getInstance()   //instancia
@@ -89,7 +89,7 @@ class MyPurchasesFragment : Fragment(), MyProductViewRVAdapter.OnItemClickListen
                                                             val product =
                                                                 data.getValue(Product::class.java)  //lo guarda en una variable
                                                             if (product?.id == productsId.id) {
-                                                                listMyProducts.add(product)
+                                                                listMyQuotes.add(product)
                                                             }
                                                         }
                                                         contentRVAdapter.notifyDataSetChanged()
@@ -121,10 +121,7 @@ class MyPurchasesFragment : Fragment(), MyProductViewRVAdapter.OnItemClickListen
     }
 
     override fun onItemClick(product: Product) {  //obtiene la información de lo que se presiono
-        val action =
-            MyPurchasesFragmentDirections.actionMyPurchaseFragmentToMyPurchaseDetailsFragment(
-                product
-            )
+        val action = MyQuotesFragmentDirections.actionMyQuotesFragmentToMyQuoteDetailsFragment(product)
         findNavController().navigate(action)
     }
 

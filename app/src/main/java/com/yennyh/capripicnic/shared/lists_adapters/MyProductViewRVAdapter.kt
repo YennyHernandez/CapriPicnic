@@ -3,18 +3,17 @@ package com.yennyh.capripicnic.shared.lists_adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.ListMyProductsItemBinding
 import com.yennyh.capripicnic.models.Product
 
-class MyProductRVAdapter(
+class MyProductViewRVAdapter(
     var myProductsList: ArrayList<Product>,
     private val onItemClickListener: OnItemClickListener
 ) :
-        RecyclerView.Adapter<MyProductRVAdapter.ListMyProductsViewHolder>() {
+        RecyclerView.Adapter<MyProductViewRVAdapter.ListMyProductsViewHolder>() {
 
     override fun onCreateViewHolder(
             parent: ViewGroup,
@@ -33,7 +32,7 @@ class MyProductRVAdapter(
             position: Int
     ) {  //datos que voy a mostrar de la lista dependiendo de la posicion
         val service = myProductsList[position]
-        holder.bindThematic(service)
+        holder.bindMyProducts(service)
 
     }
 
@@ -48,7 +47,7 @@ class MyProductRVAdapter(
             RecyclerView.ViewHolder(itemView) { //coloca los datos en item, setea la informacion de las cajas
         private val binding = ListMyProductsItemBinding.bind(itemView)
 
-        fun bindThematic(myProductView: Product) {
+        fun bindMyProducts(myProductView: Product) {
             Picasso.get().load(myProductView.photos[0].url).into(binding.listMyProductsImageView)
 
             binding.nameMyProductListTextView.text = myProductView.name
