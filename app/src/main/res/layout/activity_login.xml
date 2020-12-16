@@ -85,6 +85,7 @@
             android:textColor="@android:color/white" />
 
         <!-- Sign in mail-->
+        <!-- Sign in Google-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signIn_button"
             android:layout_width="match_parent"
@@ -98,7 +99,7 @@
             android:textSize="21sp"
             app:backgroundTint="@color/colorAccent"
             app:cornerRadius="30dp" />
-        <!-- Sign in Google-->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signIn_withGoogle_button"
             android:layout_width="match_parent"
