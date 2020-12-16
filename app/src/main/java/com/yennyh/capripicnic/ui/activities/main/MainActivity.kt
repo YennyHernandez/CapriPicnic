@@ -36,7 +36,8 @@ class MainActivity : AuthService() {
         appBarConfiguration = AppBarConfiguration.Builder(
             R.id.myQuotesFragment, R.id.myPurchaseFragment,
             R.id.myReservationsFragment, R.id.myAccountFragment,
-            R.id.homeFragment, R.id.reservationsFragment,
+            R.id.adminFragment, R.id.homeFragment,
+            R.id.reservationsFragment,
             R.id.productsFragment, R.id.mapsFragment
         ) //Pass the ids of fragments from nav_graph which you d'ont want to show back button in toolbar
             .setOpenableLayout(drawer_layout) //Pass the drawer layout id from activity xml
@@ -63,7 +64,8 @@ class MainActivity : AuthService() {
                 R.id.myQuotesFragment,
                 R.id.myPurchaseFragment,
                 R.id.myReservationsFragment,
-                R.id.myAccountFragment -> hideBothNavigation()
+                R.id.myAccountFragment,
+                R.id.adminFragment -> hideBothNavigation()
                 else -> showBothNavigation()
             }
         }

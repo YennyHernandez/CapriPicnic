@@ -102,4 +102,9 @@
         android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
         android:label="@string/maps"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/adminFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
 </navigation>
