@@ -7,8 +7,7 @@ data class Product(
     val baseUnit: String = "",
     val description: String = "",
     val id: String? = "",
-    val idProductType: String = "",
     val name: String = "",
-    val photos: List<Photo> = arrayListOf(),
+    val photos: List<Photo> = arrayListOf(Photo()),
     val price: String = ""
 ):Serializable

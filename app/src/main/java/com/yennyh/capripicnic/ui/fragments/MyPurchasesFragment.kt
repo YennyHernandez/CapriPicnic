@@ -22,94 +22,118 @@ import com.yennyh.capripicnic.shared.lists_adapters.MyProductRVAdapter
 class MyPurchasesFragment : Fragment(), MyProductRVAdapter.OnItemClickListener {
     private lateinit var contentRVAdapter: MyProductRVAdapter
     private lateinit var binding: FragmentMyPurchasesBinding
-    private lateinit var authSvc : AuthService
+    private lateinit var authSvc: AuthService
 
     var listMyProducts: MutableList<Product> =
-            mutableListOf()   //usado para bases de datos con firebaserealtime
+        mutableListOf()   //usado para bases de datos con firebaserealtime
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {// Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_purchases, container, false) //purchase contiene picnics y productos comprados
+        return inflater.inflate(
+            R.layout.fragment_my_purchases,
+            container,
+            false
+        ) //purchase contiene picnics y productos comprados
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         authSvc = AuthService()
         binding = FragmentMyPurchasesBinding.bind(view)
         binding.myPurchaseRecyclerView.layoutManager =
-                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         binding.myPurchaseRecyclerView.setHasFixedSize(true)
         contentRVAdapter = MyProductRVAdapter(
-                listMyProducts as ArrayList<Product>,
-                this@MyPurchasesFragment
+            listMyProducts as ArrayList<Product>,
+            this@MyPurchasesFragment
         )
         binding.myPurchaseRecyclerView.adapter =
-                contentRVAdapter   // hay que cargarle la información
+            contentRVAdapter   // hay que cargarle la información
         loadFromFirebase()
         contentRVAdapter.notifyDataSetChanged()
     }
 
     private fun loadFromFirebase() {
         listMyProducts.clear()
+
         val currentUserUid = authSvc.getCurrentUser().uid
         val database = FirebaseDatabase.getInstance()   //instancia
-        val myCurrentUserRef= database.getReference("users").child(currentUserUid)  //referencia
+        val myCurrentUserRef = database.getReference("users").child(currentUserUid)  //referencia
 
         val postListenerUserDB =
-                object : ValueEventListener {  //hace un llamado y devuelve la información que contiene el usuario
-                    override fun onDataChange(dataSnapshotUser: DataSnapshot) {  //snaps es la data del usuario
-                        val user: User = dataSnapshotUser.getValue(User::class.java)!!
-                        for(cartId: IdCart in user.idCarts!!){
-                            val myCartRef= database.getReference("carts").child(cartId.id)
+            object :
+                ValueEventListener {  //hace un llamado y devuelve la información que contiene el usuario
+                override fun onDataChange(dataSnapshotUser: DataSnapshot) {  //snaps es la data del usuario
+                    val user: User = dataSnapshotUser.getValue(User::class.java)!!
 
-                            val postListenerCartDB =
-                                object : ValueEventListener{
-                                    override fun onDataChange(dataSnapshotCart: DataSnapshot) {
-                                        val cart: Cart = dataSnapshotCart.getValue(Cart::class.java)!!
-                                        for(productsId: IdProduct in cart.idProducts){
-                                            val myProductRef = database.getReference("products").child(productsId.id)
+                    for (cartId: IdCart in user.idCarts!!) {
+                        val myCartRef = database.getReference("carts").child(cartId.id)
 
-                                            val postListenerProductDB =
-                                                    object : ValueEventListener{
-                                                        override fun onDataChange(dataSnapshotProduct: DataSnapshot) {
-                                                            val product = dataSnapshotCart.getValue(Product ::class.java)
-                                                            product?.let { listMyProducts.add(it) }
+                        val postListenerCartDB =
+                            object : ValueEventListener {
+                                override fun onDataChange(dataSnapshotCart: DataSnapshot) {
+                                    val cart: Cart? = dataSnapshotCart.getValue(Cart::class.java)!!
+
+                                    if (cart != null) {
+                                        for (productsId: IdProduct in cart.idProducts) {
+
+                                            val myProductRef =
+                                                database.getReference("products")  //referencia
+//
+                                            val postListener =
+                                                object :
+                                                    ValueEventListener {  //hace un llamado y devuelve la información que contiene
+                                                    override fun onDataChange(dataSnapshotProduct: DataSnapshot) {  //snaps es la data
+                                                        for (data: DataSnapshot in dataSnapshotProduct.children) { // recorrera todos los hijos (items de tabla)
+                                                            val product =
+                                                                data.getValue(Product::class.java)  //lo guarda en una variable
+                                                            if (product?.id == productsId.id) {
+                                                                listMyProducts.add(product)
+                                                            }
                                                         }
-                                                        override fun onCancelled(error: DatabaseError) {
-                                                            onShowErrorDataChange(error)
-                                                        }
+                                                        contentRVAdapter.notifyDataSetChanged()
                                                     }
-                                            myProductRef.addValueEventListener(postListenerProductDB)
+
+                                                    override fun onCancelled(error: DatabaseError) {
+                                                    }
+                                                }
+
+                                            myProductRef.addValueEventListener(postListener)  //agrega la información cargada
                                         }
-                                        contentRVAdapter.notifyDataSetChanged()
                                     }
-                                    override fun onCancelled(error: DatabaseError) {
-                                        onShowErrorDataChange(error)
-                                    }
+                                    contentRVAdapter.notifyDataSetChanged()
                                 }
-                            myCartRef.addValueEventListener(postListenerCartDB)
-                        }
-                    }
-                    override fun onCancelled(error: DatabaseError) {
-                        onShowErrorDataChange(error)
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    onShowErrorDataChange(error)
+                                }
+                            }
+                        myCartRef.addValueEventListener(postListenerCartDB)
                     }
                 }
-        myCurrentUserRef.addValueEventListener(postListenerUserDB)  //agrega la información cargada
+
+                override fun onCancelled(error: DatabaseError) {
+                    onShowErrorDataChange(error)
+                }
+            }
+        myCurrentUserRef.addValueEventListener(postListenerUserDB)
     }
 
     override fun onItemClick(product: Product) {  //obtiene la información de lo que se presiono
         val action =
-                //ProductsFragmentDirections.actionProductsFragmentToProductViewDetailsFragment(product)
-                 MyPurchasesFragmentDirections.actionMyPurchaseFragmentToPurchaseDetailsFragment(product)
+            //ProductsFragmentDirections.actionProductsFragmentToProductViewDetailsFragment(product)
+            MyPurchasesFragmentDirections.actionMyPurchaseFragmentToMyPurchaseDetailsFragment(
+                product
+            )
         findNavController().navigate(action)
     }
 
     private fun onShowErrorDataChange(error: DatabaseError) {
         Toast.makeText(
-                activity,
-                error.toException().message,
-                Toast.LENGTH_LONG
+            activity,
+            error.toException().message,
+            Toast.LENGTH_LONG
         ).show()
     }
 

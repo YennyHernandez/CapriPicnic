@@ -3,14 +3,16 @@ package com.yennyh.capripicnic.shared.lists_adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.yennyh.capripicnic.R
 import com.yennyh.capripicnic.databinding.ListMyProductsItemBinding
 import com.yennyh.capripicnic.models.Product
 
-class MyProductRVAdapter(var myProductsList: ArrayList<Product>,
-                         private val onItemClickListener: OnItemClickListener
+class MyProductRVAdapter(
+    var myProductsList: ArrayList<Product>,
+    private val onItemClickListener: OnItemClickListener
 ) :
         RecyclerView.Adapter<MyProductRVAdapter.ListMyProductsViewHolder>() {
 
@@ -18,6 +20,8 @@ class MyProductRVAdapter(var myProductsList: ArrayList<Product>,
             parent: ViewGroup,
             viewType: Int
     ): ListMyProductsViewHolder {//inflar item
+
+
         val itemView =
                 LayoutInflater.from(parent.context)
                         .inflate(R.layout.list_my_products_item, parent, false)

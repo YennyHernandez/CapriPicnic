@@ -14,6 +14,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.yennyh.capripicnic.R
+import com.yennyh.capripicnic.models.IdCart
 import com.yennyh.capripicnic.models.User
 import com.yennyh.capripicnic.ui.activities.login.LoginActivity
 import com.yennyh.capripicnic.ui.activities.main.MainActivity
@@ -99,9 +100,10 @@ open class AuthService : AppCompatActivity() {
 
                         val postListener = object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                val user: User = dataSnapshot.getValue(User::class.java)!!
-                                user.verified = true
-                                userReference.setValue(user)
+                                val newUser = dataSnapshot.getValue(User::class.java)!!
+                                newUser.verified = true
+                                newUser.idCarts = listOf(IdCart("0"))
+                                userReference.setValue(newUser)
                                 editPrefs(email, "BASIC")
                             }
 
@@ -169,6 +171,7 @@ open class AuthService : AppCompatActivity() {
                             newUser.verified = true
                             newUser.uid = account.id
                             newUser.photoUrl = account.photoUrl.toString()
+                            newUser.idCarts = listOf(IdCart("0"))
 
                             setUserDatabase(newUser)
                             val main = Intent(this, MainActivity::class.java)

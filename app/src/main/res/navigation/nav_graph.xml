@@ -61,30 +61,29 @@
             app:argType="com.yennyh.capripicnic.models.Product" />
     </fragment>
 
-
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
-        android:label="@string/maps"
-        tools:layout="@layout/fragment_map" />
-
     <fragment
         android:id="@+id/myPurchaseFragment"
         android:name="com.yennyh.capripicnic.ui.fragments.MyPurchasesFragment"
-        android:label="@string/my_purchases">
+        android:label="@string/my_purchases"
+        tools:layout="@layout/fragment_my_purchases">
         <action
-            android:id="@+id/action_myPurchaseFragment_to_purchaseDetailsFragment"
-            app:destination="@id/purchaseDetailsFragment" />
+            android:id="@+id/action_myPurchaseFragment_to_myPurchaseDetailsFragment"
+            app:destination="@id/myPurchaseDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/purchaseDetailsFragment"
-        android:name="com.yennyh.capripicnic.PurchaseDetailsFragment"
-        android:label="fragment_purchase_details"
-        tools:layout="@layout/fragment_purchase_details">
+        android:id="@+id/myPurchaseDetailsFragment"
+        android:name="com.yennyh.capripicnic.shared.details_recyclerview.MyPurchaseDetailsFragment"
+        android:label="@string/my_purchases"
+        tools:layout="@layout/fragment_my_purchase_details">
         <argument
             android:name="myProductSelect"
             app:argType="com.yennyh.capripicnic.models.Product"/>
     </fragment>
 
 
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.yennyh.capripicnic.ui.fragments.MapFragment"
+        android:label="@string/maps"
+        tools:layout="@layout/fragment_map" />
 </navigation>
