@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -193,12 +195,36 @@ open class AuthService : AppCompatActivity() {
         }
     }
 
-    fun updateUser(uid: String, user: User) {
-
-    }
-
     fun deleteUser(uidUser: String) {
-
+        MaterialAlertDialogBuilder(baseContext)
+                .setMessage("Esta seguro que desea eliminar el usuario?")
+                .setNeutralButton("Cancelar", null)
+                .setNegativeButton("NO") { _, _ ->
+                    Toast.makeText(
+                        baseContext,
+                        "Operación cancelada",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                .setPositiveButton("Aceptar") { _, _ ->
+                    val userReference = FirebaseDatabase.getInstance().getReference("users").child(uidUser)
+                    userReference.removeValue().addOnCompleteListener{
+                        if(it.isSuccessful){
+                            Toast.makeText(
+                                baseContext,
+                                "El usuario ha sido eliminado",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }else{
+                            Toast.makeText(
+                                baseContext,
+                                it.exception.toString(),
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+                .show()
     }
 
     fun changePassword(currentPassword: String, newPassword: String) {
